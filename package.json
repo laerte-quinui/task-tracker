@@ -11,12 +11,12 @@
   "dependencies": {
     "@hugeicons/core-free-icons": "^1.0.14",
     "@hugeicons/react": "^1.0.5",
-    "@prisma/client": "^6.8.2",
     "classnames": "^2.5.1",
     "next": "15.3.2",
     "prisma": "^6.8.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^3.25.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
