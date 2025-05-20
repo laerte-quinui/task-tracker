@@ -7,6 +7,7 @@ import { Button, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
@@ -19,12 +20,20 @@ const NewIssuePage = () => {
     resolver: zodResolver(createIssueSchema)
   })
 
+  const [isSubmitting, setSubmitting] = useState(false)
+
   return (
     <form
       className="max-w-xl space-y-4"
-      onSubmit={handleSubmit(async (data)=> {
-        await axios.post('/api/issues', data)
-        router.push('/issues')
+      onSubmit={handleSubmit(async (data) => {
+        try {
+          setSubmitting(true)
+          await axios.post('/api/issues', data)
+          router.push('/issues')
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (err) {
+          setSubmitting(false)
+        }
       })}
     >
       <TextField.Root placeholder="Title" {...register('title')} />
@@ -39,7 +48,7 @@ const NewIssuePage = () => {
       />
       <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-      <Button>Create new issue</Button>
+      <Button disabled={isSubmitting} loading={isSubmitting}>Create new issue</Button>
     </form>
   )
 }
