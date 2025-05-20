@@ -22,19 +22,21 @@ const NewIssuePage = () => {
 
   const [isSubmitting, setSubmitting] = useState(false)
 
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setSubmitting(true)
+      await axios.post('/api/issues', data)
+      router.push('/issues')
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
+      setSubmitting(false)
+    }
+  })
+
   return (
     <form
       className="max-w-xl space-y-4"
-      onSubmit={handleSubmit(async (data) => {
-        try {
-          setSubmitting(true)
-          await axios.post('/api/issues', data)
-          router.push('/issues')
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (err) {
-          setSubmitting(false)
-        }
-      })}
+      onSubmit={onSubmit}
     >
       <TextField.Root placeholder="Title" {...register('title')} />
       <ErrorMessage>{errors.title?.message}</ErrorMessage>
