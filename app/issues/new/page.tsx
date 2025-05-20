@@ -1,8 +1,9 @@
 'use client'
 
+import ErrorMessage from "@/app/components/ErrorMessage";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Text, TextField } from "@radix-ui/themes";
+import { Button, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -27,7 +28,7 @@ const NewIssuePage = () => {
       })}
     >
       <TextField.Root placeholder="Title" {...register('title')} />
-      {errors.title && <Text color="red" as="p">{errors.title.message}</Text>}
+      <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
       <Controller
         name="description"
@@ -36,7 +37,7 @@ const NewIssuePage = () => {
           ({field})=> <SimpleMDE placeholder="Description" {...field} />
         }
       />
-      {errors.description && <Text color="red" as="p">{errors.description.message}</Text>}
+      <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
       <Button>Create new issue</Button>
     </form>
