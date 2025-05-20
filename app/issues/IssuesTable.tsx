@@ -1,5 +1,6 @@
 import { prisma } from '@/prisma/client'
 import { Table } from '@radix-ui/themes'
+import Link from 'next/link'
 import IssueStatusBadge from './IssueStatusBadge'
 
 const IssuesTable = async () => {
@@ -22,7 +23,9 @@ const IssuesTable = async () => {
         {issues.map((issue) => (
           <Table.Row key={issue.id}>
             <Table.Cell>
-              {issue.title}
+              <Link href={`/issues/${issue.id}`} className='underline hover:text-indigo-700 transition-colors'>
+                {issue.title}
+              </Link>
               <div className="block md:hidden">
                 <IssueStatusBadge status={issue.status} />
               </div>
