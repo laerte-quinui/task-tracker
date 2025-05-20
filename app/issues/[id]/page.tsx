@@ -1,6 +1,7 @@
 import { prisma } from '@/prisma/client'
-import { Flex, Heading, Text } from '@radix-ui/themes'
+import { Flex, Heading, Separator, Text } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'
+import MarkdownRender from 'react-markdown'
 import IssueStatusBadge from '../IssueStatusBadge'
 
 interface Props {
@@ -19,12 +20,19 @@ const IssueDetailsPage = async ({ params }: Props) => {
   return (
     <div>
       <Heading>{issue.title}</Heading>
-      <Flex gap='4' py='4' mb='4' className='border-b border-stone-200'>
+      <Flex gap='4' pt='2'>
         <IssueStatusBadge status={issue.status} />
         <Text className='text-stone-500'>{issue.createdAt.toDateString()}</Text>
       </Flex>
-      <Text size='2' weight='bold' mb='2' className='text-stone-400'>Description</Text>
-      <Text as='p' className='text-stone-700'>{issue.description}</Text>
+
+      <Separator my='6' size='4' />
+
+      <Text as='p' size='2' weight='bold' mb='2' className='text-stone-400'>Description</Text>
+      <Text as='p' className='prose prose-stone'>
+        <MarkdownRender>{issue.description}</MarkdownRender>
+      </Text>
+
+      <Separator my='6' size='4' />
     </div>
   )
 }
