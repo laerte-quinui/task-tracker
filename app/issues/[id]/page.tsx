@@ -1,8 +1,8 @@
 import { prisma } from '@/prisma/client'
-import { Flex, Heading, Separator, Text } from '@radix-ui/themes'
+import { Box, Grid } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'
-import MarkdownRender from 'react-markdown'
-import IssueStatusBadge from '../IssueStatusBadge'
+import IssueActions from './IssueActions'
+import IssueDetails from './IssueDetails'
 
 interface Props {
   params: { id: string }
@@ -18,22 +18,15 @@ const IssueDetailsPage = async ({ params }: Props) => {
   if(!issue) notFound()
 
   return (
-    <div>
-      <Heading>{issue.title}</Heading>
-      <Flex gap='4' pt='2'>
-        <IssueStatusBadge status={issue.status} />
-        <Text className='text-stone-500'>{issue.createdAt.toDateString()}</Text>
-      </Flex>
+    <Grid columns={{ initial: '1', md: '2' }} gap='4'>
+      <Box>
+        <IssueDetails issue={issue} />
+      </Box>
 
-      <Separator my='6' size='4' />
-
-      <Text as='p' size='2' weight='bold' mb='2' className='text-stone-400'>Description</Text>
-      <Text as='p' className='prose prose-stone'>
-        <MarkdownRender>{issue.description}</MarkdownRender>
-      </Text>
-
-      <Separator my='6' size='4' />
-    </div>
+      <Box>
+        <IssueActions issueId={issue.id} />
+      </Box>
+    </Grid>
   )
 }
 

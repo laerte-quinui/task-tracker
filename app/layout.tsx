@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <Theme accentColor="crimson" grayColor="slate" radius="large">
           <NavBar />
-          <main className="container mx-auto">
+          <main className="container mx-4 md:mx-24 lg:mx-auto">
             {children}
           </main>
         </Theme>

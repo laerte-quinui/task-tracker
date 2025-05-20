@@ -15,7 +15,7 @@ const NavBar = () => {
   ]
 
   return (
-    <nav className='flex justify-between items-center py-2 px-4 rounded-lg bg-stone-900 m-2 h-14'>
+    <nav className='flex justify-between items-center py-2 px-4 rounded-lg bg-stone-900 m-2 mb-8 h-14'>
       <Link href='/'>
         <HugeiconsIcon
           icon={Bug02Icon}
