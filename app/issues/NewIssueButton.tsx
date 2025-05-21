@@ -7,7 +7,7 @@ import Link from 'next/link'
 const NewIssueButton = () => {
   return (
     <Link href='/issues/new' className="ml-auto flex">
-      <Button className="!cursor-pointer">
+      <Button>
         <HugeiconsIcon
           icon={PlusSignIcon}
           className="size-4"

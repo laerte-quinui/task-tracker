@@ -1,4 +1,4 @@
-import { prisma } from '@/prisma/client'
+import { getIssue } from '@/app/utils/issues'
 import { Box, Grid } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'
 import IssueActions from './IssueActions'
@@ -10,11 +10,7 @@ interface Props {
 
 const IssueDetailsPage = async ({ params }: Props) => {
   if(isNaN(parseInt(params.id))) notFound()
-
-  const issue = await prisma.issue.findUnique({
-    where: { id: parseInt(params.id) }
-  })
-
+  const issue = await getIssue(params.id)
   if(!issue) notFound()
 
   return (
