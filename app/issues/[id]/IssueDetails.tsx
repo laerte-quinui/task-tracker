@@ -15,7 +15,7 @@ const IssueDetails = ({ issue }: { issue: Issue }) => {
       <Separator my='6' size='4' />
 
       <Text as='p' size='2' weight='bold' mb='2' className='text-stone-400'>Description</Text>
-      <Text as='div' className='prose prose-stone'>
+      <Text as='div' className='prose prose-stone max-w-full'>
         <MarkdownRender>{issue.description}</MarkdownRender>
       </Text>
 
