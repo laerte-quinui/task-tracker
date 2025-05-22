@@ -8,14 +8,17 @@ import { useState } from 'react'
 const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
   const router = useRouter()
   const [error, setError] = useState(false)
+  const [isDeleting, setDeleting] = useState(false)
 
   const handleDeleteIssue = async () => {
     try {
+      setDeleting(true)
       await axios.delete('/api/issues/' + issueId)
       router.push('/issues')
       router.refresh()
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (_err) {
+      setDeleting(false)
       setError(true)
     }
   }
@@ -24,7 +27,12 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <IconButton color='gray' variant='outline'>
+          <IconButton
+            color='gray'
+            variant='outline'
+            disabled={isDeleting}
+            loading={isDeleting}
+          >
               <HugeiconsIcon icon={Delete02Icon}/>
           </IconButton>
         </AlertDialog.Trigger>
