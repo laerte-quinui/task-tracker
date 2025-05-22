@@ -7,3 +7,9 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .nav-link {
+    @apply py-1 px-2 rounded-lg transition-colors text-stone-50 hover:bg-stone-800
+  }
+}
