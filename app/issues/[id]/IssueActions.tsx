@@ -10,7 +10,7 @@ const IssueActions = ({ issueId }: { issueId: number }) => {
 
       <Flex gap="2">
         <EditIssueButton issueId={issueId} />
-        <DeleteIssueButton />
+        <DeleteIssueButton issueId={issueId} />
       </Flex>
     </>
   )
