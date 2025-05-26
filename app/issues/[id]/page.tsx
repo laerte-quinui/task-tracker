@@ -1,4 +1,5 @@
 import { getIssue } from '@/app/utils/issues'
+import { auth } from '@/auth'
 import { Box, Grid } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'
 import IssueActions from './IssueActions'
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const IssueDetailsPage = async ({ params }: Props) => {
+  const session = await auth()
+
   if(isNaN(parseInt(params.id))) notFound()
   const issue = await getIssue(params.id)
   if(!issue) notFound()
@@ -19,9 +22,11 @@ const IssueDetailsPage = async ({ params }: Props) => {
         <IssueDetails issue={issue} />
       </Box>
 
-      <Box className='col-span-4'>
-        <IssueActions issueId={issue.id} />
-      </Box>
+      {session &&
+        <Box className='col-span-4'>
+          <IssueActions issueId={issue.id} />
+        </Box>
+      }
     </Grid>
   )
 }
