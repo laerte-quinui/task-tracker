@@ -2,7 +2,7 @@
 
 import { Bug02Icon, LogoutSquare02Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
-import { Avatar, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes'
+import { Avatar, Container, DropdownMenu, Flex, Skeleton, Text } from '@radix-ui/themes'
 import classNames from 'classnames'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -24,7 +24,7 @@ const NavBar = () => {
             <NavLinks />
           </Flex>
 
-          <AuthLinks />
+          <AuthStatus />
         </Flex>
       </Container>
     </nav>
@@ -55,10 +55,10 @@ const NavLinks = () => {
   )
 }
 
-const AuthLinks = () => {
+const AuthStatus = () => {
   const { status, data: session } = useSession()
 
-  if (status === 'loading') return null
+  if (status === 'loading') return <Skeleton width="48px" height="48px" />
   if (status === 'unauthenticated')
     return (
       <Link
@@ -77,7 +77,7 @@ const AuthLinks = () => {
           fallback={session!.user!.name![0]}
           size='4'
           radius='full'
-          loading='lazy'
+          // loading='lazy'
           variant='solid'
           referrerPolicy='no-referrer'
           className='p-1 cursor-pointer hover:bg-stone-800 transition-all'
