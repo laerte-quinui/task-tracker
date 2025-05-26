@@ -2,7 +2,7 @@
 
 import { Bug02Icon, LogoutSquare02Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
-import { Avatar, Container, DropdownMenu, Flex } from '@radix-ui/themes'
+import { Avatar, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes'
 import classNames from 'classnames'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -74,14 +74,19 @@ const AuthLinks = () => {
       <DropdownMenu.Trigger>
         <Avatar
           src={session!.user!.image!}
-          fallback={session!.user!.name!.slice(1)}
-          radius='full'
+          fallback={session!.user!.name![0]}
           size='4'
+          radius='full'
+          loading='lazy'
+          variant='solid'
+          referrerPolicy='no-referrer'
           className='p-1 cursor-pointer hover:bg-stone-800 transition-all'
         />
       </DropdownMenu.Trigger>
       <DropdownMenu.Content variant='soft' color='gray'>
-        <DropdownMenu.Label>{session!.user!.email}</DropdownMenu.Label>
+        <DropdownMenu.Label>
+          <Text>{session!.user!.email}</Text>
+        </DropdownMenu.Label>
         <DropdownMenu.Item color='red'>
           <HugeiconsIcon
             icon={LogoutSquare02Icon}
