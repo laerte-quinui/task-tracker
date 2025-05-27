@@ -1,10 +1,18 @@
 import { prisma } from '@/prisma/client'
 import { Table } from '@radix-ui/themes'
 import Link from 'next/link'
+import { IssueStatus } from '../generated/prisma'
 import IssueStatusBadge from './IssueStatusBadge'
 
-const IssuesTable = async () => {
-  const issues = await prisma.issue.findMany()
+const IssuesTable = async ({
+  statusFilter
+}: {
+  statusFilter?: IssueStatus
+}) => {
+  const validStatuses = Object.values(IssueStatus)
+  const status = validStatuses.includes(statusFilter!) ? statusFilter : undefined
+
+  const issues = await prisma.issue.findMany({ where: { status }})
 
   return (
     <Table.Root variant='surface'>
