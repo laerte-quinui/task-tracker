@@ -1,15 +1,15 @@
 import { Box, Flex } from "@radix-ui/themes"
-import { IssueStatus } from "../generated/prisma"
+import { Issue, IssueStatus } from "../generated/prisma"
 import IssuesTable from "./IssuesTable"
 import IssueStatusFilter from "./IssueStatusFilter"
 import NewIssueButton from "./NewIssueButton"
 
 interface Props {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  searchParams: Promise<{ status: IssueStatus, orderBy: keyof Issue }>
 }
 
 const IssuesPage = async ({ searchParams }: Props ) => {
-  const { status } = await searchParams
+  const { status, orderBy } = await searchParams
 
   return (
     <Box>
@@ -18,7 +18,10 @@ const IssuesPage = async ({ searchParams }: Props ) => {
         <NewIssueButton />
       </Flex>
 
-      <IssuesTable statusFilter={status as unknown as IssueStatus} />
+      <IssuesTable
+        statusFilter={status}
+        orderBy={orderBy}
+      />
     </Box>
   )
 }
