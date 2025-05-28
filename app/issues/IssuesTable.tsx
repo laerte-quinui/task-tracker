@@ -27,7 +27,18 @@ const IssuesTable = async ({
   const validStatuses = Object.values(IssueStatus)
   const status = validStatuses.includes(statusFilter!) ? statusFilter : undefined
 
-  const issues = await prisma.issue.findMany({ where: { status }})
+  const validOrder = columns
+  .map(column => column.value)
+  .includes(orderBy!)
+  ? { [orderBy!]: 'asc' }
+  : undefined
+
+  const issues = await prisma.issue.findMany({
+    where: {
+      status,
+    },
+    orderBy: validOrder
+  })
 
   return (
     <Table.Root variant='surface'>
