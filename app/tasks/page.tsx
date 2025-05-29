@@ -1,12 +1,12 @@
 import { Box, Flex } from "@radix-ui/themes"
-import { Issue, IssueStatus } from "../generated/prisma"
+import { Task, TaskStatus } from "../generated/prisma"
 import NewTaskButton from "./NewTaskButton"
 import TasksTable from "./TasksTable"
 import TaskStatusFilter from "./TaskStatusFilter"
 
 export interface TasksQuery {
-  status: IssueStatus,
-  orderBy: keyof Issue,
+  status: TaskStatus,
+  orderBy: keyof Task,
   page: string
 }
 interface Props {

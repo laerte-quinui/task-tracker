@@ -1,9 +1,9 @@
-import { Issue } from '@/app/generated/prisma'
+import { Task } from '@/app/generated/prisma'
 import { Flex, Heading, Separator, Text } from '@radix-ui/themes'
 import MarkdownRender from 'react-markdown'
 import TaskStatusBadge from '../TaskStatusBadge'
 
-const TaskDetails = ({ task }: { task: Issue }) => {
+const TaskDetails = ({ task }: { task: Task }) => {
   return (
     <>
       <Heading>{task.title}</Heading>

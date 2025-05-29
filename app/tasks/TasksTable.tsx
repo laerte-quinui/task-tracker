@@ -4,7 +4,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Table } from '@radix-ui/themes'
 import Link from 'next/link'
 import Pagination from '../components/Pagination'
-import { Issue, IssueStatus } from '../generated/prisma'
+import { Task, TaskStatus } from '../generated/prisma'
 import TaskStatusBadge from './TaskStatusBadge'
 import { TasksQuery } from './page'
 
@@ -18,7 +18,7 @@ const TasksTable = async ({ searchParams }: Props) => {
   const currentPage = parseInt(page) || 1
   const pageSize = 10
 
-  const validStatuses = Object.values(IssueStatus)
+  const validStatuses = Object.values(TaskStatus)
   const status = validStatuses.includes(statusFilter!) ? statusFilter : undefined
 
   const validOrder = columns
@@ -27,13 +27,13 @@ const TasksTable = async ({ searchParams }: Props) => {
     ? { [orderBy!]: 'asc' }
     : undefined
 
-  const tasks = await prisma.issue.findMany({
+  const tasks = await prisma.task.findMany({
     where: { status },
     orderBy: validOrder,
     skip: (currentPage - 1) * pageSize,
     take: pageSize
   })
-  const tasksTotal = await prisma.issue.count({ where: { status }})
+  const tasksTotal = await prisma.task.count({ where: { status }})
 
   return (
     <>
@@ -91,10 +91,10 @@ const TasksTable = async ({ searchParams }: Props) => {
 
 const columns: {
   label: string
-  value: keyof Issue
+  value: keyof Task
   className?: string
 }[] = [
-  { label: 'Issue', value: 'title' },
+  { label: 'Task', value: 'title' },
   { label: 'Status', value: 'status', className: 'hidden md:table-cell' },
   { label: 'Created at', value: 'createdAt', className: 'hidden md:table-cell' },
 ]

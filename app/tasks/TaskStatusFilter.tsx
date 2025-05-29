@@ -1,13 +1,13 @@
 'use client'
 import { Select } from '@radix-ui/themes'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { IssueStatus } from '../generated/prisma'
+import { TaskStatus } from '../generated/prisma'
 
-const statuses: { label: string, value?: IssueStatus }[] = [
+const statuses: { label: string, value?: TaskStatus }[] = [
   { label: 'All' },
-  { label: 'Open', value: 'OPEN' },
-  { label: 'In progress', value: 'IN_PROGRESS' },
-  { label: 'Closed', value: 'CLOSED' },
+  { label: 'Todo', value: 'TO_DO' },
+  { label: 'doing', value: 'DOING' },
+  { label: 'Done', value: 'DONE' },
 ]
 
 const TaskStatusFilter = () => {

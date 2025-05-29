@@ -1,4 +1,4 @@
-import { getIssue } from '@/app/utils/issues'
+import { getTask } from '@/app/utils/tasks'
 import { notFound } from 'next/navigation'
 import TaskForm from '../../_components/TaskForm'
 
@@ -8,7 +8,7 @@ interface Props {
 
 const EditTaskPage = async ({ params }: Props) => {
   if(isNaN(parseInt(params.id))) notFound()
-  const task = await getIssue(params.id)
+  const task = await getTask(params.id)
   if(!task) notFound()
 
   return (

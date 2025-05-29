@@ -1,4 +1,4 @@
-import { getIssue } from '@/app/utils/issues'
+import { getTask } from '@/app/utils/tasks'
 import { auth } from '@/auth'
 import { Box, Grid } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'
@@ -13,7 +13,7 @@ const TaskDetailsPage = async ({ params }: Props) => {
   const session = await auth()
 
   if(isNaN(parseInt(params.id))) notFound()
-  const task = await getIssue(params.id)
+  const task = await getTask(params.id)
   if(!task) notFound()
 
   return (
