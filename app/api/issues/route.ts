@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { IssueSchema } from "../../validationSchemas";
+import { TaskSchema } from "../../validationSchemas";
 
 export async function POST(request: NextRequest) {
   const session = await auth()
@@ -9,15 +9,15 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json()
 
-  const validation = IssueSchema.safeParse(body)
+  const validation = TaskSchema.safeParse(body)
   if(!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400})
 
-  const newIssue = await prisma.issue.create({
+  const newTask = await prisma.task.create({
     data: {
       title: body.title,
       description: body.description
     }
   })
-  return NextResponse.json(newIssue, { status: 201 })
+  return NextResponse.json(newTask, { status: 201 })
 }

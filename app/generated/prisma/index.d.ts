@@ -14,10 +14,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Issue
+ * Model Task
  * 
  */
-export type Issue = $Result.DefaultSelection<Prisma.$IssuePayload>
+export type Task = $Result.DefaultSelection<Prisma.$TaskPayload>
 /**
  * Model User
  * 
@@ -48,19 +48,19 @@ export type Authenticator = $Result.DefaultSelection<Prisma.$AuthenticatorPayloa
  * Enums
  */
 export namespace $Enums {
-  export const IssueStatus: {
-  OPEN: 'OPEN',
-  IN_PROGRESS: 'IN_PROGRESS',
-  CLOSED: 'CLOSED'
+  export const TaskStatus: {
+  TO_DO: 'TO_DO',
+  DOING: 'DOING',
+  DONE: 'DONE'
 };
 
-export type IssueStatus = (typeof IssueStatus)[keyof typeof IssueStatus]
+export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
 
 }
 
-export type IssueStatus = $Enums.IssueStatus
+export type TaskStatus = $Enums.TaskStatus
 
-export const IssueStatus: typeof $Enums.IssueStatus
+export const TaskStatus: typeof $Enums.TaskStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -69,8 +69,8 @@ export const IssueStatus: typeof $Enums.IssueStatus
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Issues
- * const issues = await prisma.issue.findMany()
+ * // Fetch zero or more Tasks
+ * const tasks = await prisma.task.findMany()
  * ```
  *
  *
@@ -90,8 +90,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Issues
-   * const issues = await prisma.issue.findMany()
+   * // Fetch zero or more Tasks
+   * const tasks = await prisma.task.findMany()
    * ```
    *
    *
@@ -188,14 +188,14 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.issue`: Exposes CRUD operations for the **Issue** model.
+   * `prisma.task`: Exposes CRUD operations for the **Task** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Issues
-    * const issues = await prisma.issue.findMany()
+    * // Fetch zero or more Tasks
+    * const tasks = await prisma.task.findMany()
     * ```
     */
-  get issue(): Prisma.IssueDelegate<ExtArgs, ClientOptions>;
+  get task(): Prisma.TaskDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -686,7 +686,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Issue: 'Issue',
+    Task: 'Task',
     User: 'User',
     Account: 'Account',
     Session: 'Session',
@@ -710,73 +710,73 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "issue" | "user" | "account" | "session" | "verificationToken" | "authenticator"
+      modelProps: "task" | "user" | "account" | "session" | "verificationToken" | "authenticator"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      Issue: {
-        payload: Prisma.$IssuePayload<ExtArgs>
-        fields: Prisma.IssueFieldRefs
+      Task: {
+        payload: Prisma.$TaskPayload<ExtArgs>
+        fields: Prisma.TaskFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.IssueFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload> | null
+            args: Prisma.TaskFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.IssueFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
+            args: Prisma.TaskFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
           }
           findFirst: {
-            args: Prisma.IssueFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload> | null
+            args: Prisma.TaskFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.IssueFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
+            args: Prisma.TaskFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
           }
           findMany: {
-            args: Prisma.IssueFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>[]
+            args: Prisma.TaskFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>[]
           }
           create: {
-            args: Prisma.IssueCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
+            args: Prisma.TaskCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
           }
           createMany: {
-            args: Prisma.IssueCreateManyArgs<ExtArgs>
+            args: Prisma.TaskCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.IssueDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
+            args: Prisma.TaskDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
           }
           update: {
-            args: Prisma.IssueUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
+            args: Prisma.TaskUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
           }
           deleteMany: {
-            args: Prisma.IssueDeleteManyArgs<ExtArgs>
+            args: Prisma.TaskDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.IssueUpdateManyArgs<ExtArgs>
+            args: Prisma.TaskUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.IssueUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
+            args: Prisma.TaskUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
           }
           aggregate: {
-            args: Prisma.IssueAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateIssue>
+            args: Prisma.TaskAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTask>
           }
           groupBy: {
-            args: Prisma.IssueGroupByArgs<ExtArgs>
-            result: $Utils.Optional<IssueGroupByOutputType>[]
+            args: Prisma.TaskGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskGroupByOutputType>[]
           }
           count: {
-            args: Prisma.IssueCountArgs<ExtArgs>
-            result: $Utils.Optional<IssueCountAggregateOutputType> | number
+            args: Prisma.TaskCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskCountAggregateOutputType> | number
           }
         }
       }
@@ -1194,7 +1194,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    issue?: IssueOmit
+    task?: TaskOmit
     user?: UserOmit
     account?: AccountOmit
     session?: SessionOmit
@@ -1343,44 +1343,44 @@ export namespace Prisma {
    */
 
   /**
-   * Model Issue
+   * Model Task
    */
 
-  export type AggregateIssue = {
-    _count: IssueCountAggregateOutputType | null
-    _avg: IssueAvgAggregateOutputType | null
-    _sum: IssueSumAggregateOutputType | null
-    _min: IssueMinAggregateOutputType | null
-    _max: IssueMaxAggregateOutputType | null
+  export type AggregateTask = {
+    _count: TaskCountAggregateOutputType | null
+    _avg: TaskAvgAggregateOutputType | null
+    _sum: TaskSumAggregateOutputType | null
+    _min: TaskMinAggregateOutputType | null
+    _max: TaskMaxAggregateOutputType | null
   }
 
-  export type IssueAvgAggregateOutputType = {
+  export type TaskAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type IssueSumAggregateOutputType = {
+  export type TaskSumAggregateOutputType = {
     id: number | null
   }
 
-  export type IssueMinAggregateOutputType = {
+  export type TaskMinAggregateOutputType = {
     id: number | null
     title: string | null
     description: string | null
-    status: $Enums.IssueStatus | null
+    status: $Enums.TaskStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type IssueMaxAggregateOutputType = {
+  export type TaskMaxAggregateOutputType = {
     id: number | null
     title: string | null
     description: string | null
-    status: $Enums.IssueStatus | null
+    status: $Enums.TaskStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type IssueCountAggregateOutputType = {
+  export type TaskCountAggregateOutputType = {
     id: number
     title: number
     description: number
@@ -1391,24 +1391,15 @@ export namespace Prisma {
   }
 
 
-  export type IssueAvgAggregateInputType = {
+  export type TaskAvgAggregateInputType = {
     id?: true
   }
 
-  export type IssueSumAggregateInputType = {
+  export type TaskSumAggregateInputType = {
     id?: true
   }
 
-  export type IssueMinAggregateInputType = {
-    id?: true
-    title?: true
-    description?: true
-    status?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type IssueMaxAggregateInputType = {
+  export type TaskMinAggregateInputType = {
     id?: true
     title?: true
     description?: true
@@ -1417,7 +1408,16 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type IssueCountAggregateInputType = {
+  export type TaskMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TaskCountAggregateInputType = {
     id?: true
     title?: true
     description?: true
@@ -1427,132 +1427,132 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type IssueAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Issue to aggregate.
+     * Filter which Task to aggregate.
      */
-    where?: IssueWhereInput
+    where?: TaskWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Issues to fetch.
+     * Determine the order of Tasks to fetch.
      */
-    orderBy?: IssueOrderByWithRelationInput | IssueOrderByWithRelationInput[]
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: IssueWhereUniqueInput
+    cursor?: TaskWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Issues from the position of the cursor.
+     * Take `±n` Tasks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Issues.
+     * Skip the first `n` Tasks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Issues
+     * Count returned Tasks
     **/
-    _count?: true | IssueCountAggregateInputType
+    _count?: true | TaskCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: IssueAvgAggregateInputType
+    _avg?: TaskAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: IssueSumAggregateInputType
+    _sum?: TaskSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: IssueMinAggregateInputType
+    _min?: TaskMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: IssueMaxAggregateInputType
+    _max?: TaskMaxAggregateInputType
   }
 
-  export type GetIssueAggregateType<T extends IssueAggregateArgs> = {
-        [P in keyof T & keyof AggregateIssue]: P extends '_count' | 'count'
+  export type GetTaskAggregateType<T extends TaskAggregateArgs> = {
+        [P in keyof T & keyof AggregateTask]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateIssue[P]>
-      : GetScalarType<T[P], AggregateIssue[P]>
+        : GetScalarType<T[P], AggregateTask[P]>
+      : GetScalarType<T[P], AggregateTask[P]>
   }
 
 
 
 
-  export type IssueGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: IssueWhereInput
-    orderBy?: IssueOrderByWithAggregationInput | IssueOrderByWithAggregationInput[]
-    by: IssueScalarFieldEnum[] | IssueScalarFieldEnum
-    having?: IssueScalarWhereWithAggregatesInput
+  export type TaskGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithAggregationInput | TaskOrderByWithAggregationInput[]
+    by: TaskScalarFieldEnum[] | TaskScalarFieldEnum
+    having?: TaskScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: IssueCountAggregateInputType | true
-    _avg?: IssueAvgAggregateInputType
-    _sum?: IssueSumAggregateInputType
-    _min?: IssueMinAggregateInputType
-    _max?: IssueMaxAggregateInputType
+    _count?: TaskCountAggregateInputType | true
+    _avg?: TaskAvgAggregateInputType
+    _sum?: TaskSumAggregateInputType
+    _min?: TaskMinAggregateInputType
+    _max?: TaskMaxAggregateInputType
   }
 
-  export type IssueGroupByOutputType = {
+  export type TaskGroupByOutputType = {
     id: number
     title: string
     description: string
-    status: $Enums.IssueStatus
+    status: $Enums.TaskStatus
     createdAt: Date
     updatedAt: Date
-    _count: IssueCountAggregateOutputType | null
-    _avg: IssueAvgAggregateOutputType | null
-    _sum: IssueSumAggregateOutputType | null
-    _min: IssueMinAggregateOutputType | null
-    _max: IssueMaxAggregateOutputType | null
+    _count: TaskCountAggregateOutputType | null
+    _avg: TaskAvgAggregateOutputType | null
+    _sum: TaskSumAggregateOutputType | null
+    _min: TaskMinAggregateOutputType | null
+    _max: TaskMaxAggregateOutputType | null
   }
 
-  type GetIssueGroupByPayload<T extends IssueGroupByArgs> = Prisma.PrismaPromise<
+  type GetTaskGroupByPayload<T extends TaskGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<IssueGroupByOutputType, T['by']> &
+      PickEnumerable<TaskGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof IssueGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof TaskGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], IssueGroupByOutputType[P]>
-            : GetScalarType<T[P], IssueGroupByOutputType[P]>
+              : GetScalarType<T[P], TaskGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type IssueSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     description?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-  }, ExtArgs["result"]["issue"]>
+  }, ExtArgs["result"]["task"]>
 
 
 
-  export type IssueSelectScalar = {
+  export type TaskSelectScalar = {
     id?: boolean
     title?: boolean
     description?: boolean
@@ -1561,155 +1561,155 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type IssueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["issue"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
 
-  export type $IssuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Issue"
+  export type $TaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Task"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
       description: string
-      status: $Enums.IssueStatus
+      status: $Enums.TaskStatus
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["issue"]>
+    }, ExtArgs["result"]["task"]>
     composites: {}
   }
 
-  type IssueGetPayload<S extends boolean | null | undefined | IssueDefaultArgs> = $Result.GetResult<Prisma.$IssuePayload, S>
+  type TaskGetPayload<S extends boolean | null | undefined | TaskDefaultArgs> = $Result.GetResult<Prisma.$TaskPayload, S>
 
-  type IssueCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<IssueFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: IssueCountAggregateInputType | true
+  type TaskCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskCountAggregateInputType | true
     }
 
-  export interface IssueDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Issue'], meta: { name: 'Issue' } }
+  export interface TaskDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Task'], meta: { name: 'Task' } }
     /**
-     * Find zero or one Issue that matches the filter.
-     * @param {IssueFindUniqueArgs} args - Arguments to find a Issue
+     * Find zero or one Task that matches the filter.
+     * @param {TaskFindUniqueArgs} args - Arguments to find a Task
      * @example
-     * // Get one Issue
-     * const issue = await prisma.issue.findUnique({
+     * // Get one Task
+     * const task = await prisma.task.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends IssueFindUniqueArgs>(args: SelectSubset<T, IssueFindUniqueArgs<ExtArgs>>): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends TaskFindUniqueArgs>(args: SelectSubset<T, TaskFindUniqueArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Issue that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Task that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {IssueFindUniqueOrThrowArgs} args - Arguments to find a Issue
+     * @param {TaskFindUniqueOrThrowArgs} args - Arguments to find a Task
      * @example
-     * // Get one Issue
-     * const issue = await prisma.issue.findUniqueOrThrow({
+     * // Get one Task
+     * const task = await prisma.task.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends IssueFindUniqueOrThrowArgs>(args: SelectSubset<T, IssueFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends TaskFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Issue that matches the filter.
+     * Find the first Task that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueFindFirstArgs} args - Arguments to find a Issue
+     * @param {TaskFindFirstArgs} args - Arguments to find a Task
      * @example
-     * // Get one Issue
-     * const issue = await prisma.issue.findFirst({
+     * // Get one Task
+     * const task = await prisma.task.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends IssueFindFirstArgs>(args?: SelectSubset<T, IssueFindFirstArgs<ExtArgs>>): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends TaskFindFirstArgs>(args?: SelectSubset<T, TaskFindFirstArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Issue that matches the filter or
+     * Find the first Task that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueFindFirstOrThrowArgs} args - Arguments to find a Issue
+     * @param {TaskFindFirstOrThrowArgs} args - Arguments to find a Task
      * @example
-     * // Get one Issue
-     * const issue = await prisma.issue.findFirstOrThrow({
+     * // Get one Task
+     * const task = await prisma.task.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends IssueFindFirstOrThrowArgs>(args?: SelectSubset<T, IssueFindFirstOrThrowArgs<ExtArgs>>): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends TaskFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Issues that matches the filter.
+     * Find zero or more Tasks that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {TaskFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Issues
-     * const issues = await prisma.issue.findMany()
+     * // Get all Tasks
+     * const tasks = await prisma.task.findMany()
      * 
-     * // Get first 10 Issues
-     * const issues = await prisma.issue.findMany({ take: 10 })
+     * // Get first 10 Tasks
+     * const tasks = await prisma.task.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const issueWithIdOnly = await prisma.issue.findMany({ select: { id: true } })
+     * const taskWithIdOnly = await prisma.task.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends IssueFindManyArgs>(args?: SelectSubset<T, IssueFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends TaskFindManyArgs>(args?: SelectSubset<T, TaskFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Issue.
-     * @param {IssueCreateArgs} args - Arguments to create a Issue.
+     * Create a Task.
+     * @param {TaskCreateArgs} args - Arguments to create a Task.
      * @example
-     * // Create one Issue
-     * const Issue = await prisma.issue.create({
+     * // Create one Task
+     * const Task = await prisma.task.create({
      *   data: {
-     *     // ... data to create a Issue
+     *     // ... data to create a Task
      *   }
      * })
      * 
      */
-    create<T extends IssueCreateArgs>(args: SelectSubset<T, IssueCreateArgs<ExtArgs>>): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends TaskCreateArgs>(args: SelectSubset<T, TaskCreateArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Issues.
-     * @param {IssueCreateManyArgs} args - Arguments to create many Issues.
+     * Create many Tasks.
+     * @param {TaskCreateManyArgs} args - Arguments to create many Tasks.
      * @example
-     * // Create many Issues
-     * const issue = await prisma.issue.createMany({
+     * // Create many Tasks
+     * const task = await prisma.task.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends IssueCreateManyArgs>(args?: SelectSubset<T, IssueCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends TaskCreateManyArgs>(args?: SelectSubset<T, TaskCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Issue.
-     * @param {IssueDeleteArgs} args - Arguments to delete one Issue.
+     * Delete a Task.
+     * @param {TaskDeleteArgs} args - Arguments to delete one Task.
      * @example
-     * // Delete one Issue
-     * const Issue = await prisma.issue.delete({
+     * // Delete one Task
+     * const Task = await prisma.task.delete({
      *   where: {
-     *     // ... filter to delete one Issue
+     *     // ... filter to delete one Task
      *   }
      * })
      * 
      */
-    delete<T extends IssueDeleteArgs>(args: SelectSubset<T, IssueDeleteArgs<ExtArgs>>): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends TaskDeleteArgs>(args: SelectSubset<T, TaskDeleteArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Issue.
-     * @param {IssueUpdateArgs} args - Arguments to update one Issue.
+     * Update one Task.
+     * @param {TaskUpdateArgs} args - Arguments to update one Task.
      * @example
-     * // Update one Issue
-     * const issue = await prisma.issue.update({
+     * // Update one Task
+     * const task = await prisma.task.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1719,30 +1719,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends IssueUpdateArgs>(args: SelectSubset<T, IssueUpdateArgs<ExtArgs>>): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends TaskUpdateArgs>(args: SelectSubset<T, TaskUpdateArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Issues.
-     * @param {IssueDeleteManyArgs} args - Arguments to filter Issues to delete.
+     * Delete zero or more Tasks.
+     * @param {TaskDeleteManyArgs} args - Arguments to filter Tasks to delete.
      * @example
-     * // Delete a few Issues
-     * const { count } = await prisma.issue.deleteMany({
+     * // Delete a few Tasks
+     * const { count } = await prisma.task.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends IssueDeleteManyArgs>(args?: SelectSubset<T, IssueDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends TaskDeleteManyArgs>(args?: SelectSubset<T, TaskDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Issues.
+     * Update zero or more Tasks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {TaskUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Issues
-     * const issue = await prisma.issue.updateMany({
+     * // Update many Tasks
+     * const task = await prisma.task.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1752,56 +1752,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends IssueUpdateManyArgs>(args: SelectSubset<T, IssueUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends TaskUpdateManyArgs>(args: SelectSubset<T, TaskUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Issue.
-     * @param {IssueUpsertArgs} args - Arguments to update or create a Issue.
+     * Create or update one Task.
+     * @param {TaskUpsertArgs} args - Arguments to update or create a Task.
      * @example
-     * // Update or create a Issue
-     * const issue = await prisma.issue.upsert({
+     * // Update or create a Task
+     * const task = await prisma.task.upsert({
      *   create: {
-     *     // ... data to create a Issue
+     *     // ... data to create a Task
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Issue we want to update
+     *     // ... the filter for the Task we want to update
      *   }
      * })
      */
-    upsert<T extends IssueUpsertArgs>(args: SelectSubset<T, IssueUpsertArgs<ExtArgs>>): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends TaskUpsertArgs>(args: SelectSubset<T, TaskUpsertArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Issues.
+     * Count the number of Tasks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueCountArgs} args - Arguments to filter Issues to count.
+     * @param {TaskCountArgs} args - Arguments to filter Tasks to count.
      * @example
-     * // Count the number of Issues
-     * const count = await prisma.issue.count({
+     * // Count the number of Tasks
+     * const count = await prisma.task.count({
      *   where: {
-     *     // ... the filter for the Issues we want to count
+     *     // ... the filter for the Tasks we want to count
      *   }
      * })
     **/
-    count<T extends IssueCountArgs>(
-      args?: Subset<T, IssueCountArgs>,
+    count<T extends TaskCountArgs>(
+      args?: Subset<T, TaskCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], IssueCountAggregateOutputType>
+          : GetScalarType<T['select'], TaskCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Issue.
+     * Allows you to perform aggregations operations on a Task.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {TaskAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1821,13 +1821,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends IssueAggregateArgs>(args: Subset<T, IssueAggregateArgs>): Prisma.PrismaPromise<GetIssueAggregateType<T>>
+    aggregate<T extends TaskAggregateArgs>(args: Subset<T, TaskAggregateArgs>): Prisma.PrismaPromise<GetTaskAggregateType<T>>
 
     /**
-     * Group by Issue.
+     * Group by Task.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueGroupByArgs} args - Group by arguments.
+     * @param {TaskGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1842,14 +1842,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends IssueGroupByArgs,
+      T extends TaskGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: IssueGroupByArgs['orderBy'] }
-        : { orderBy?: IssueGroupByArgs['orderBy'] },
+        ? { orderBy: TaskGroupByArgs['orderBy'] }
+        : { orderBy?: TaskGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1898,20 +1898,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, IssueGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIssueGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, TaskGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Issue model
+   * Fields of the Task model
    */
-  readonly fields: IssueFieldRefs;
+  readonly fields: TaskFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Issue.
+   * The delegate class that acts as a "Promise-like" for Task.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__IssueClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__TaskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1939,333 +1939,333 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Issue model
+   * Fields of the Task model
    */
-  interface IssueFieldRefs {
-    readonly id: FieldRef<"Issue", 'Int'>
-    readonly title: FieldRef<"Issue", 'String'>
-    readonly description: FieldRef<"Issue", 'String'>
-    readonly status: FieldRef<"Issue", 'IssueStatus'>
-    readonly createdAt: FieldRef<"Issue", 'DateTime'>
-    readonly updatedAt: FieldRef<"Issue", 'DateTime'>
+  interface TaskFieldRefs {
+    readonly id: FieldRef<"Task", 'Int'>
+    readonly title: FieldRef<"Task", 'String'>
+    readonly description: FieldRef<"Task", 'String'>
+    readonly status: FieldRef<"Task", 'TaskStatus'>
+    readonly createdAt: FieldRef<"Task", 'DateTime'>
+    readonly updatedAt: FieldRef<"Task", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Issue findUnique
+   * Task findUnique
    */
-  export type IssueFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * Filter, which Issue to fetch.
+     * Filter, which Task to fetch.
      */
-    where: IssueWhereUniqueInput
+    where: TaskWhereUniqueInput
   }
 
   /**
-   * Issue findUniqueOrThrow
+   * Task findUniqueOrThrow
    */
-  export type IssueFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * Filter, which Issue to fetch.
+     * Filter, which Task to fetch.
      */
-    where: IssueWhereUniqueInput
+    where: TaskWhereUniqueInput
   }
 
   /**
-   * Issue findFirst
+   * Task findFirst
    */
-  export type IssueFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * Filter, which Issue to fetch.
+     * Filter, which Task to fetch.
      */
-    where?: IssueWhereInput
+    where?: TaskWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Issues to fetch.
+     * Determine the order of Tasks to fetch.
      */
-    orderBy?: IssueOrderByWithRelationInput | IssueOrderByWithRelationInput[]
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Issues.
+     * Sets the position for searching for Tasks.
      */
-    cursor?: IssueWhereUniqueInput
+    cursor?: TaskWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Issues from the position of the cursor.
+     * Take `±n` Tasks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Issues.
+     * Skip the first `n` Tasks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Issues.
+     * Filter by unique combinations of Tasks.
      */
-    distinct?: IssueScalarFieldEnum | IssueScalarFieldEnum[]
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
   }
 
   /**
-   * Issue findFirstOrThrow
+   * Task findFirstOrThrow
    */
-  export type IssueFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * Filter, which Issue to fetch.
+     * Filter, which Task to fetch.
      */
-    where?: IssueWhereInput
+    where?: TaskWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Issues to fetch.
+     * Determine the order of Tasks to fetch.
      */
-    orderBy?: IssueOrderByWithRelationInput | IssueOrderByWithRelationInput[]
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Issues.
+     * Sets the position for searching for Tasks.
      */
-    cursor?: IssueWhereUniqueInput
+    cursor?: TaskWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Issues from the position of the cursor.
+     * Take `±n` Tasks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Issues.
+     * Skip the first `n` Tasks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Issues.
+     * Filter by unique combinations of Tasks.
      */
-    distinct?: IssueScalarFieldEnum | IssueScalarFieldEnum[]
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
   }
 
   /**
-   * Issue findMany
+   * Task findMany
    */
-  export type IssueFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * Filter, which Issues to fetch.
+     * Filter, which Tasks to fetch.
      */
-    where?: IssueWhereInput
+    where?: TaskWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Issues to fetch.
+     * Determine the order of Tasks to fetch.
      */
-    orderBy?: IssueOrderByWithRelationInput | IssueOrderByWithRelationInput[]
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Issues.
+     * Sets the position for listing Tasks.
      */
-    cursor?: IssueWhereUniqueInput
+    cursor?: TaskWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Issues from the position of the cursor.
+     * Take `±n` Tasks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Issues.
+     * Skip the first `n` Tasks.
      */
     skip?: number
-    distinct?: IssueScalarFieldEnum | IssueScalarFieldEnum[]
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
   }
 
   /**
-   * Issue create
+   * Task create
    */
-  export type IssueCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * The data needed to create a Issue.
+     * The data needed to create a Task.
      */
-    data: XOR<IssueCreateInput, IssueUncheckedCreateInput>
+    data: XOR<TaskCreateInput, TaskUncheckedCreateInput>
   }
 
   /**
-   * Issue createMany
+   * Task createMany
    */
-  export type IssueCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Issues.
+     * The data used to create many Tasks.
      */
-    data: IssueCreateManyInput | IssueCreateManyInput[]
+    data: TaskCreateManyInput | TaskCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Issue update
+   * Task update
    */
-  export type IssueUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * The data needed to update a Issue.
+     * The data needed to update a Task.
      */
-    data: XOR<IssueUpdateInput, IssueUncheckedUpdateInput>
+    data: XOR<TaskUpdateInput, TaskUncheckedUpdateInput>
     /**
-     * Choose, which Issue to update.
+     * Choose, which Task to update.
      */
-    where: IssueWhereUniqueInput
+    where: TaskWhereUniqueInput
   }
 
   /**
-   * Issue updateMany
+   * Task updateMany
    */
-  export type IssueUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Issues.
+     * The data used to update Tasks.
      */
-    data: XOR<IssueUpdateManyMutationInput, IssueUncheckedUpdateManyInput>
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyInput>
     /**
-     * Filter which Issues to update
+     * Filter which Tasks to update
      */
-    where?: IssueWhereInput
+    where?: TaskWhereInput
     /**
-     * Limit how many Issues to update.
+     * Limit how many Tasks to update.
      */
     limit?: number
   }
 
   /**
-   * Issue upsert
+   * Task upsert
    */
-  export type IssueUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * The filter to search for the Issue to update in case it exists.
+     * The filter to search for the Task to update in case it exists.
      */
-    where: IssueWhereUniqueInput
+    where: TaskWhereUniqueInput
     /**
-     * In case the Issue found by the `where` argument doesn't exist, create a new Issue with this data.
+     * In case the Task found by the `where` argument doesn't exist, create a new Task with this data.
      */
-    create: XOR<IssueCreateInput, IssueUncheckedCreateInput>
+    create: XOR<TaskCreateInput, TaskUncheckedCreateInput>
     /**
-     * In case the Issue was found with the provided `where` argument, update it with this data.
+     * In case the Task was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<IssueUpdateInput, IssueUncheckedUpdateInput>
+    update: XOR<TaskUpdateInput, TaskUncheckedUpdateInput>
   }
 
   /**
-   * Issue delete
+   * Task delete
    */
-  export type IssueDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
     /**
-     * Filter which Issue to delete.
+     * Filter which Task to delete.
      */
-    where: IssueWhereUniqueInput
+    where: TaskWhereUniqueInput
   }
 
   /**
-   * Issue deleteMany
+   * Task deleteMany
    */
-  export type IssueDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Issues to delete
+     * Filter which Tasks to delete
      */
-    where?: IssueWhereInput
+    where?: TaskWhereInput
     /**
-     * Limit how many Issues to delete.
+     * Limit how many Tasks to delete.
      */
     limit?: number
   }
 
   /**
-   * Issue without action
+   * Task without action
    */
-  export type IssueDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TaskDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Issue
+     * Select specific fields to fetch from the Task
      */
-    select?: IssueSelect<ExtArgs> | null
+    select?: TaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Issue
+     * Omit specific fields from the Task
      */
-    omit?: IssueOmit<ExtArgs> | null
+    omit?: TaskOmit<ExtArgs> | null
   }
 
 
@@ -7219,7 +7219,7 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const IssueScalarFieldEnum: {
+  export const TaskScalarFieldEnum: {
     id: 'id',
     title: 'title',
     description: 'description',
@@ -7228,7 +7228,7 @@ export namespace Prisma {
     updatedAt: 'updatedAt'
   };
 
-  export type IssueScalarFieldEnum = (typeof IssueScalarFieldEnum)[keyof typeof IssueScalarFieldEnum]
+  export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -7309,12 +7309,12 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const IssueOrderByRelevanceFieldEnum: {
+  export const TaskOrderByRelevanceFieldEnum: {
     title: 'title',
     description: 'description'
   };
 
-  export type IssueOrderByRelevanceFieldEnum = (typeof IssueOrderByRelevanceFieldEnum)[keyof typeof IssueOrderByRelevanceFieldEnum]
+  export type TaskOrderByRelevanceFieldEnum = (typeof TaskOrderByRelevanceFieldEnum)[keyof typeof TaskOrderByRelevanceFieldEnum]
 
 
   export const NullsOrder: {
@@ -7402,9 +7402,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'IssueStatus'
+   * Reference to a field of type 'TaskStatus'
    */
-  export type EnumIssueStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IssueStatus'>
+  export type EnumTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskStatus'>
     
 
 
@@ -7432,64 +7432,64 @@ export namespace Prisma {
    */
 
 
-  export type IssueWhereInput = {
-    AND?: IssueWhereInput | IssueWhereInput[]
-    OR?: IssueWhereInput[]
-    NOT?: IssueWhereInput | IssueWhereInput[]
-    id?: IntFilter<"Issue"> | number
-    title?: StringFilter<"Issue"> | string
-    description?: StringFilter<"Issue"> | string
-    status?: EnumIssueStatusFilter<"Issue"> | $Enums.IssueStatus
-    createdAt?: DateTimeFilter<"Issue"> | Date | string
-    updatedAt?: DateTimeFilter<"Issue"> | Date | string
+  export type TaskWhereInput = {
+    AND?: TaskWhereInput | TaskWhereInput[]
+    OR?: TaskWhereInput[]
+    NOT?: TaskWhereInput | TaskWhereInput[]
+    id?: IntFilter<"Task"> | number
+    title?: StringFilter<"Task"> | string
+    description?: StringFilter<"Task"> | string
+    status?: EnumTaskStatusFilter<"Task"> | $Enums.TaskStatus
+    createdAt?: DateTimeFilter<"Task"> | Date | string
+    updatedAt?: DateTimeFilter<"Task"> | Date | string
   }
 
-  export type IssueOrderByWithRelationInput = {
+  export type TaskOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _relevance?: IssueOrderByRelevanceInput
+    _relevance?: TaskOrderByRelevanceInput
   }
 
-  export type IssueWhereUniqueInput = Prisma.AtLeast<{
+  export type TaskWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: IssueWhereInput | IssueWhereInput[]
-    OR?: IssueWhereInput[]
-    NOT?: IssueWhereInput | IssueWhereInput[]
-    title?: StringFilter<"Issue"> | string
-    description?: StringFilter<"Issue"> | string
-    status?: EnumIssueStatusFilter<"Issue"> | $Enums.IssueStatus
-    createdAt?: DateTimeFilter<"Issue"> | Date | string
-    updatedAt?: DateTimeFilter<"Issue"> | Date | string
+    AND?: TaskWhereInput | TaskWhereInput[]
+    OR?: TaskWhereInput[]
+    NOT?: TaskWhereInput | TaskWhereInput[]
+    title?: StringFilter<"Task"> | string
+    description?: StringFilter<"Task"> | string
+    status?: EnumTaskStatusFilter<"Task"> | $Enums.TaskStatus
+    createdAt?: DateTimeFilter<"Task"> | Date | string
+    updatedAt?: DateTimeFilter<"Task"> | Date | string
   }, "id">
 
-  export type IssueOrderByWithAggregationInput = {
+  export type TaskOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: IssueCountOrderByAggregateInput
-    _avg?: IssueAvgOrderByAggregateInput
-    _max?: IssueMaxOrderByAggregateInput
-    _min?: IssueMinOrderByAggregateInput
-    _sum?: IssueSumOrderByAggregateInput
+    _count?: TaskCountOrderByAggregateInput
+    _avg?: TaskAvgOrderByAggregateInput
+    _max?: TaskMaxOrderByAggregateInput
+    _min?: TaskMinOrderByAggregateInput
+    _sum?: TaskSumOrderByAggregateInput
   }
 
-  export type IssueScalarWhereWithAggregatesInput = {
-    AND?: IssueScalarWhereWithAggregatesInput | IssueScalarWhereWithAggregatesInput[]
-    OR?: IssueScalarWhereWithAggregatesInput[]
-    NOT?: IssueScalarWhereWithAggregatesInput | IssueScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Issue"> | number
-    title?: StringWithAggregatesFilter<"Issue"> | string
-    description?: StringWithAggregatesFilter<"Issue"> | string
-    status?: EnumIssueStatusWithAggregatesFilter<"Issue"> | $Enums.IssueStatus
-    createdAt?: DateTimeWithAggregatesFilter<"Issue"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Issue"> | Date | string
+  export type TaskScalarWhereWithAggregatesInput = {
+    AND?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
+    OR?: TaskScalarWhereWithAggregatesInput[]
+    NOT?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Task"> | number
+    title?: StringWithAggregatesFilter<"Task"> | string
+    description?: StringWithAggregatesFilter<"Task"> | string
+    status?: EnumTaskStatusWithAggregatesFilter<"Task"> | $Enums.TaskStatus
+    createdAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
   }
 
   export type UserWhereInput = {
@@ -7857,62 +7857,62 @@ export namespace Prisma {
     transports?: StringNullableWithAggregatesFilter<"Authenticator"> | string | null
   }
 
-  export type IssueCreateInput = {
+  export type TaskCreateInput = {
     title: string
     description: string
-    status?: $Enums.IssueStatus
+    status?: $Enums.TaskStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type IssueUncheckedCreateInput = {
+  export type TaskUncheckedCreateInput = {
     id?: number
     title: string
     description: string
-    status?: $Enums.IssueStatus
+    status?: $Enums.TaskStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type IssueUpdateInput = {
+  export type TaskUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumIssueStatusFieldUpdateOperationsInput | $Enums.IssueStatus
+    status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IssueUncheckedUpdateInput = {
+  export type TaskUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumIssueStatusFieldUpdateOperationsInput | $Enums.IssueStatus
+    status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IssueCreateManyInput = {
+  export type TaskCreateManyInput = {
     id?: number
     title: string
     description: string
-    status?: $Enums.IssueStatus
+    status?: $Enums.TaskStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type IssueUpdateManyMutationInput = {
+  export type TaskUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumIssueStatusFieldUpdateOperationsInput | $Enums.IssueStatus
+    status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IssueUncheckedUpdateManyInput = {
+  export type TaskUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumIssueStatusFieldUpdateOperationsInput | $Enums.IssueStatus
+    status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8337,11 +8337,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type EnumIssueStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.IssueStatus | EnumIssueStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.IssueStatus[]
-    notIn?: $Enums.IssueStatus[]
-    not?: NestedEnumIssueStatusFilter<$PrismaModel> | $Enums.IssueStatus
+  export type EnumTaskStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TaskStatus | EnumTaskStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TaskStatus[]
+    notIn?: $Enums.TaskStatus[]
+    not?: NestedEnumTaskStatusFilter<$PrismaModel> | $Enums.TaskStatus
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -8355,13 +8355,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type IssueOrderByRelevanceInput = {
-    fields: IssueOrderByRelevanceFieldEnum | IssueOrderByRelevanceFieldEnum[]
+  export type TaskOrderByRelevanceInput = {
+    fields: TaskOrderByRelevanceFieldEnum | TaskOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type IssueCountOrderByAggregateInput = {
+  export type TaskCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
@@ -8370,20 +8370,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type IssueAvgOrderByAggregateInput = {
+  export type TaskAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type IssueMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type IssueMinOrderByAggregateInput = {
+  export type TaskMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
@@ -8392,7 +8383,16 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type IssueSumOrderByAggregateInput = {
+  export type TaskMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -8430,14 +8430,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type EnumIssueStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.IssueStatus | EnumIssueStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.IssueStatus[]
-    notIn?: $Enums.IssueStatus[]
-    not?: NestedEnumIssueStatusWithAggregatesFilter<$PrismaModel> | $Enums.IssueStatus
+  export type EnumTaskStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TaskStatus | EnumTaskStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TaskStatus[]
+    notIn?: $Enums.TaskStatus[]
+    not?: NestedEnumTaskStatusWithAggregatesFilter<$PrismaModel> | $Enums.TaskStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumIssueStatusFilter<$PrismaModel>
-    _max?: NestedEnumIssueStatusFilter<$PrismaModel>
+    _min?: NestedEnumTaskStatusFilter<$PrismaModel>
+    _max?: NestedEnumTaskStatusFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8829,8 +8829,8 @@ export namespace Prisma {
     set?: string
   }
 
-  export type EnumIssueStatusFieldUpdateOperationsInput = {
-    set?: $Enums.IssueStatus
+  export type EnumTaskStatusFieldUpdateOperationsInput = {
+    set?: $Enums.TaskStatus
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -9061,11 +9061,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedEnumIssueStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.IssueStatus | EnumIssueStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.IssueStatus[]
-    notIn?: $Enums.IssueStatus[]
-    not?: NestedEnumIssueStatusFilter<$PrismaModel> | $Enums.IssueStatus
+  export type NestedEnumTaskStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TaskStatus | EnumTaskStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TaskStatus[]
+    notIn?: $Enums.TaskStatus[]
+    not?: NestedEnumTaskStatusFilter<$PrismaModel> | $Enums.TaskStatus
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -9124,14 +9124,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedEnumIssueStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.IssueStatus | EnumIssueStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.IssueStatus[]
-    notIn?: $Enums.IssueStatus[]
-    not?: NestedEnumIssueStatusWithAggregatesFilter<$PrismaModel> | $Enums.IssueStatus
+  export type NestedEnumTaskStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TaskStatus | EnumTaskStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TaskStatus[]
+    notIn?: $Enums.TaskStatus[]
+    not?: NestedEnumTaskStatusWithAggregatesFilter<$PrismaModel> | $Enums.TaskStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumIssueStatusFilter<$PrismaModel>
-    _max?: NestedEnumIssueStatusFilter<$PrismaModel>
+    _min?: NestedEnumTaskStatusFilter<$PrismaModel>
+    _max?: NestedEnumTaskStatusFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {

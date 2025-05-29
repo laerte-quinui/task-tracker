@@ -1,7 +1,7 @@
 'use client'
 import ErrorMessage from "@/app/components/ErrorMessage";
-import { Issue } from "@/app/generated/prisma";
-import { IssueSchema } from "@/app/validationSchemas";
+import { Task } from "@/app/generated/prisma";
+import { TaskSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, TextField } from "@radix-ui/themes";
 import axios from "axios";
@@ -14,12 +14,12 @@ import { z } from "zod";
 
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), { ssr: false })
 
-type TaskFormData = z.infer<typeof IssueSchema>
+type TaskFormData = z.infer<typeof TaskSchema>
 
-const TaskForm = ({ task }: { task?: Issue }) => {
+const TaskForm = ({ task }: { task?: Task }) => {
   const router = useRouter()
   const { register, control, handleSubmit, formState: { errors } } = useForm<TaskFormData>({
-    resolver: zodResolver(IssueSchema)
+    resolver: zodResolver(TaskSchema)
   })
 
   const [isSubmitting, setSubmitting] = useState(false)

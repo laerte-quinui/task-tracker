@@ -14,19 +14,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Issue {
-  id          Int         @id @default(autoincrement())
-  title       String      @db.VarChar(255)
-  description String      @db.Text
-  status      IssueStatus @default(OPEN)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+model Task {
+  id          Int        @id @default(autoincrement())
+  title       String     @db.VarChar(255)
+  description String     @db.Text
+  status      TaskStatus @default(TO_DO)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
 
-enum IssueStatus {
-  OPEN
-  IN_PROGRESS
-  CLOSED
+enum TaskStatus {
+  TO_DO
+  DOING
+  DONE
 }
 
 model User {

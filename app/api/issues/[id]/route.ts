@@ -1,4 +1,4 @@
-import { IssueSchema } from "@/app/validationSchemas";
+import { TaskSchema } from "@/app/validationSchemas";
 import { auth } from "@/auth";
 import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
@@ -11,17 +11,17 @@ export async function PATCH(
   if(!session) return NextResponse.json({}, { status: 401 })
 
   const body = await request.json()
-  const validation = IssueSchema.safeParse(body)
+  const validation = TaskSchema.safeParse(body)
   if(!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 })
 
-  const issue = await prisma.issue.findUnique({
+  const task = await prisma.task.findUnique({
     where: { id: parseInt(params.id) }
   })
-  if(!issue)
-    return NextResponse.json("The issue doesn't exists", { status: 404 })
+  if(!task)
+    return NextResponse.json("The task doesn't exists", { status: 404 })
 
-  const updatedIssue = await prisma.issue.update({
+  const updatedTask = await prisma.task.update({
     where: { id: parseInt(params.id) },
     data: {
       title: body.title,
@@ -30,7 +30,7 @@ export async function PATCH(
     }
   })
 
-  return NextResponse.json(updatedIssue)
+  return NextResponse.json(updatedTask)
 }
 
 export async function DELETE(
@@ -40,13 +40,13 @@ export async function DELETE(
   const session = await auth()
   if(!session) return NextResponse.json({}, { status: 401 })
 
-  const issue = await prisma.issue.findUnique({
+  const task = await prisma.task.findUnique({
     where: { id: parseInt(params.id) }
   })
-  if(!issue)
-    return NextResponse.json("The issue doesn't exists", { status: 404 })
+  if(!task)
+    return NextResponse.json("The task doesn't exists", { status: 404 })
 
-  await prisma.issue.delete({
+  await prisma.task.delete({
     where: { id: parseInt(params.id) }
   })
 

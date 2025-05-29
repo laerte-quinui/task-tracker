@@ -120,7 +120,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.IssueScalarFieldEnum = {
+exports.Prisma.TaskScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
@@ -189,7 +189,7 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.IssueOrderByRelevanceFieldEnum = {
+exports.Prisma.TaskOrderByRelevanceFieldEnum = {
   title: 'title',
   description: 'description'
 };
@@ -240,14 +240,14 @@ exports.Prisma.AuthenticatorOrderByRelevanceFieldEnum = {
   credentialDeviceType: 'credentialDeviceType',
   transports: 'transports'
 };
-exports.IssueStatus = exports.$Enums.IssueStatus = {
-  OPEN: 'OPEN',
-  IN_PROGRESS: 'IN_PROGRESS',
-  CLOSED: 'CLOSED'
+exports.TaskStatus = exports.$Enums.TaskStatus = {
+  TO_DO: 'TO_DO',
+  DOING: 'DOING',
+  DONE: 'DONE'
 };
 
 exports.Prisma.ModelName = {
-  Issue: 'Issue',
+  Task: 'Task',
   User: 'User',
   Account: 'Account',
   Session: 'Session',
