@@ -4,12 +4,16 @@ import IssuesTable from "./IssuesTable"
 import IssueStatusFilter from "./IssueStatusFilter"
 import NewIssueButton from "./NewIssueButton"
 
+export interface IssuesQuery {
+  status: IssueStatus,
+  orderBy: keyof Issue,
+  page: string
+}
 interface Props {
-  searchParams: Promise<{ status: IssueStatus, orderBy: keyof Issue }>
+  searchParams: Promise<IssuesQuery>
 }
 
 const IssuesPage = async ({ searchParams }: Props ) => {
-  const { status, orderBy } = await searchParams
 
   return (
     <Box>
@@ -18,10 +22,7 @@ const IssuesPage = async ({ searchParams }: Props ) => {
         <NewIssueButton />
       </Flex>
 
-      <IssuesTable
-        statusFilter={status}
-        orderBy={orderBy}
-      />
+      <IssuesTable searchParams={searchParams} />
     </Box>
   )
 }
