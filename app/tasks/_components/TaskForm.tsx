@@ -14,11 +14,11 @@ import { z } from "zod";
 
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), { ssr: false })
 
-type IssueFormData = z.infer<typeof IssueSchema>
+type TaskFormData = z.infer<typeof IssueSchema>
 
-const IssueForm = ({ issue }: { issue?: Issue }) => {
+const TaskForm = ({ task }: { task?: Issue }) => {
   const router = useRouter()
-  const { register, control, handleSubmit, formState: { errors } } = useForm<IssueFormData>({
+  const { register, control, handleSubmit, formState: { errors } } = useForm<TaskFormData>({
     resolver: zodResolver(IssueSchema)
   })
 
@@ -27,9 +27,9 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true)
-      if(issue) await axios.patch('/api/issues/' + issue.id, data)
-      else await axios.post('/api/issues', data)
-      router.push('/issues')
+      if(task) await axios.patch('/api/tasks/' + task.id, data)
+      else await axios.post('/api/tasks', data)
+      router.push('/tasks')
       router.refresh()
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
@@ -44,7 +44,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     >
       <TextField.Root
         placeholder="Title"
-        defaultValue={issue?.title}
+        defaultValue={task?.title}
         {...register('title')}
       />
       <ErrorMessage>{errors.title?.message}</ErrorMessage>
@@ -52,7 +52,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       <Controller
         name="description"
         control={control}
-        defaultValue={issue?.description}
+        defaultValue={task?.description}
         render={
           ({field})=> <SimpleMDE placeholder="Description" {...field} />
         }
@@ -63,10 +63,10 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
         disabled={isSubmitting}
         loading={isSubmitting}
       >
-        {!issue ? 'Create new issue' : 'Save changes'}
+        {!task ? 'Create new task' : 'Save changes'}
       </Button>
     </form>
   )
 }
 
-export default IssueForm
+export default TaskForm

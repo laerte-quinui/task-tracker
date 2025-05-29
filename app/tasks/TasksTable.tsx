@@ -5,14 +5,14 @@ import { Table } from '@radix-ui/themes'
 import Link from 'next/link'
 import Pagination from '../components/Pagination'
 import { Issue, IssueStatus } from '../generated/prisma'
-import IssueStatusBadge from './IssueStatusBadge'
-import { IssuesQuery } from './page'
+import TaskStatusBadge from './TaskStatusBadge'
+import { TasksQuery } from './page'
 
 interface Props {
-  searchParams: Promise<IssuesQuery>
+  searchParams: Promise<TasksQuery>
 }
 
-const IssuesTable = async ({ searchParams }: Props) => {
+const TasksTable = async ({ searchParams }: Props) => {
   const { status: statusFilter, orderBy, page } = await searchParams
 
   const currentPage = parseInt(page) || 1
@@ -27,13 +27,13 @@ const IssuesTable = async ({ searchParams }: Props) => {
     ? { [orderBy!]: 'asc' }
     : undefined
 
-  const issues = await prisma.issue.findMany({
+  const tasks = await prisma.issue.findMany({
     where: { status },
     orderBy: validOrder,
     skip: (currentPage - 1) * pageSize,
     take: pageSize
   })
-  const issuesTotal = await prisma.issue.count({ where: { status }})
+  const tasksTotal = await prisma.issue.count({ where: { status }})
 
   return (
     <>
@@ -59,21 +59,21 @@ const IssuesTable = async ({ searchParams }: Props) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {issues.map((issue) => (
-            <Table.Row key={issue.id}>
+          {tasks.map((task) => (
+            <Table.Row key={task.id}>
               <Table.Cell>
-                <Link href={`/issues/${issue.id}`} className='underline hover:text-indigo-700 transition-colors'>
-                  {issue.title}
+                <Link href={`/tasks/${task.id}`} className='underline hover:text-indigo-700 transition-colors'>
+                  {task.title}
                 </Link>
                 <div className="block md:hidden">
-                  <IssueStatusBadge status={issue.status} />
+                  <TaskStatusBadge status={task.status} />
                 </div>
               </Table.Cell>
               <Table.Cell className='hidden md:table-cell'>
-                <IssueStatusBadge status={issue.status} />
+                <TaskStatusBadge status={task.status} />
               </Table.Cell>
               <Table.Cell className='hidden md:table-cell'>
-                {issue.createdAt.toDateString()}
+                {task.createdAt.toDateString()}
               </Table.Cell>
             </Table.Row>
           ))}
@@ -83,7 +83,7 @@ const IssuesTable = async ({ searchParams }: Props) => {
       <Pagination
         currentPage={currentPage}
         pageSize={pageSize}
-        itemsTotal={issuesTotal}
+        itemsTotal={tasksTotal}
       />
     </>
   )
@@ -99,4 +99,4 @@ const columns: {
   { label: 'Created at', value: 'createdAt', className: 'hidden md:table-cell' },
 ]
 
-export default IssuesTable
+export default TasksTable

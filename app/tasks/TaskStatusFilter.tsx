@@ -10,24 +10,24 @@ const statuses: { label: string, value?: IssueStatus }[] = [
   { label: 'Closed', value: 'CLOSED' },
 ]
 
-const IssueStatusFilter = () => {
+const TaskStatusFilter = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const handleStatusChange = (status: string) => {
+  const changeStatus = (status: string) => {
     const params = new URLSearchParams()
     const orderBy = searchParams.get('orderBy')
     if (status && status !== 'ALL') params.append('status', status)
     if (orderBy) params.append('orderBy', orderBy)
 
     const query = params.size ? '?' + params.toString() : ''
-    router.push('/issues' + query)
+    router.push('/tasks' + query)
   }
 
   return (
     <Select.Root
       defaultValue={searchParams.get('status') ?? ''}
-      onValueChange={handleStatusChange}
+      onValueChange={changeStatus}
     >
       <Select.Trigger placeholder='Filter by status' />
       <Select.Content variant='soft' color='gray' position='popper'>
@@ -44,4 +44,4 @@ const IssueStatusFilter = () => {
   )
 }
 
-export default IssueStatusFilter
+export default TaskStatusFilter

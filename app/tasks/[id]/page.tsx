@@ -2,33 +2,33 @@ import { getIssue } from '@/app/utils/issues'
 import { auth } from '@/auth'
 import { Box, Grid } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'
-import IssueActions from './IssueActions'
-import IssueDetails from './IssueDetails'
+import TaskActions from './TaskActions'
+import TaskDetails from './TaskDetails'
 
 interface Props {
   params: { id: string }
 }
 
-const IssueDetailsPage = async ({ params }: Props) => {
+const TaskDetailsPage = async ({ params }: Props) => {
   const session = await auth()
 
   if(isNaN(parseInt(params.id))) notFound()
-  const issue = await getIssue(params.id)
-  if(!issue) notFound()
+  const task = await getIssue(params.id)
+  if(!task) notFound()
 
   return (
     <Grid columns={{ initial: '1', md: '12' }} gap='6'>
       <Box className='col-span-8'>
-        <IssueDetails issue={issue} />
+        <TaskDetails task={task} />
       </Box>
 
       {session &&
         <Box className='col-span-4'>
-          <IssueActions issueId={issue.id} />
+          <TaskActions taskId={task.id} />
         </Box>
       }
     </Grid>
   )
 }
 
-export default IssueDetailsPage
+export default TaskDetailsPage

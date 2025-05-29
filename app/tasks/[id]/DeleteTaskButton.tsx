@@ -5,16 +5,16 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
+const DeleteTaskButton = ({ taskId }: { taskId: number }) => {
   const router = useRouter()
   const [error, setError] = useState(false)
   const [isDeleting, setDeleting] = useState(false)
 
-  const handleDeleteIssue = async () => {
+  const handleDeleteTask = async () => {
     try {
       setDeleting(true)
-      await axios.delete('/api/issues/' + issueId)
-      router.push('/issues')
+      await axios.delete('/api/tasks/' + taskId)
+      router.push('/tasks')
       router.refresh()
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (_err) {
@@ -40,7 +40,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
         <AlertDialog.Content maxWidth="450px">
           <AlertDialog.Title>Attention</AlertDialog.Title>
           <AlertDialog.Description size="2">
-            Are you sure you want to delete this issue? This action cannot be undone.
+            Are you sure you want to delete this task? This action cannot be undone.
           </AlertDialog.Description>
 
           <Flex gap="3" mt="4">
@@ -51,7 +51,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
               <Button
                 variant="solid"
                 color="red"
-                onClick={handleDeleteIssue}
+                onClick={handleDeleteTask}
               >
                 Yes, delete it
               </Button>
@@ -69,7 +69,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
             An unexpected error ocurred
           </AlertDialog.Title>
           <AlertDialog.Description align='center' className='text-stone-600'>
-            This issue could not be deleted. Please, try again in a few seconds.
+            This task could not be deleted. Please, try again in a few seconds.
           </AlertDialog.Description>
 
           <Flex justify='center' mt='6'>
@@ -89,4 +89,4 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
   )
 }
 
-export default DeleteIssueButton
+export default DeleteTaskButton

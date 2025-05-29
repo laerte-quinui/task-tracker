@@ -3,11 +3,11 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { IconButton, Tooltip } from '@radix-ui/themes'
 import Link from 'next/link'
 
-const EditIssueButton = ({ issueId }: { issueId: number }) => {
+const EditTaskButton = ({ taskId }: { taskId: number }) => {
   return (
-    <Tooltip content='Edit issue'>
+    <Tooltip content='Edit task'>
       <IconButton color='gray' variant='outline'>
-        <Link href={`/issues/${issueId}/edit`}>
+        <Link href={`/tasks/${taskId}/edit`}>
           <HugeiconsIcon icon={PencilEdit02Icon}/>
         </Link>
       </IconButton>
@@ -15,4 +15,4 @@ const EditIssueButton = ({ issueId }: { issueId: number }) => {
   )
 }
 
-export default EditIssueButton
+export default EditTaskButton

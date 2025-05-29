@@ -4,18 +4,18 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Button } from '@radix-ui/themes'
 import Link from 'next/link'
 
-const NewIssueButton = () => {
+const NewTaskButton = () => {
   return (
-    <Link href='/issues/new' className="ml-auto flex">
+    <Link href='/tasks/new' className="ml-auto flex">
       <Button>
         <HugeiconsIcon
           icon={PlusSignIcon}
           className="size-4"
         />
-        New issue
+        New task
       </Button>
     </Link>
   )
 }
 
-export default NewIssueButton
+export default NewTaskButton
