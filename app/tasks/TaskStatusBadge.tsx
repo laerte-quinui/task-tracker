@@ -5,7 +5,7 @@ const statusMap: Record<
   TaskStatus,
   { label: string, color: 'orange' | 'indigo' | 'green' }
 > = {
-  TO_DO: { label: 'To Do', color: 'orange' },
+  TO_DO: { label: 'To do', color: 'orange' },
   DOING: { label: 'Doing', color: 'indigo' },
   DONE: { label: 'Done', color: 'green' }
 }

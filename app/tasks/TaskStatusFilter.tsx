@@ -5,8 +5,8 @@ import { TaskStatus } from '../generated/prisma'
 
 const statuses: { label: string, value?: TaskStatus }[] = [
   { label: 'All' },
-  { label: 'Todo', value: 'TO_DO' },
-  { label: 'doing', value: 'DOING' },
+  { label: 'To do', value: 'TO_DO' },
+  { label: 'Doing', value: 'DOING' },
   { label: 'Done', value: 'DONE' },
 ]
 
