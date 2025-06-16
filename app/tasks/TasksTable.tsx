@@ -19,11 +19,11 @@ const TasksTable = async ({ searchParams }: Props) => {
   const pageSize = 10
 
   const validStatuses = Object.values(TaskStatus)
-  const status = validStatuses.includes(statusFilter!) ? statusFilter : undefined
+  const status = validStatuses.includes(statusFilter!)
+    ? statusFilter
+    : undefined
 
-  const validOrder = columns
-    .map(column => column.value)
-    .includes(orderBy!)
+  const validOrder = columns.map((column) => column.value).includes(orderBy!)
     ? { [orderBy!]: 'asc' }
     : undefined
 
@@ -31,13 +31,13 @@ const TasksTable = async ({ searchParams }: Props) => {
     where: { status },
     orderBy: validOrder,
     skip: (currentPage - 1) * pageSize,
-    take: pageSize
+    take: pageSize,
   })
-  const tasksTotal = await prisma.task.count({ where: { status }})
+  const tasksTotal = await prisma.task.count({ where: { status } })
 
   return (
     <>
-      <Table.Root variant='surface' mb='2'>
+      <Table.Root variant="surface" mb="2">
         <Table.Header>
           <Table.Row>
             {columns.map((column) => (
@@ -45,15 +45,15 @@ const TasksTable = async ({ searchParams }: Props) => {
                 key={column.value}
                 className={column.className}
               >
-                <Link href={{ query: { status, orderBy: column.value }}}>
+                <Link href={{ query: { status, orderBy: column.value } }}>
                   {column.label}
                 </Link>
-                {column.value === orderBy &&
+                {column.value === orderBy && (
                   <HugeiconsIcon
                     icon={ArrowUp02Icon}
-                    className='inline ml-1 size-4'
+                    className="inline ml-1 size-4"
                   />
-                }
+                )}
               </Table.ColumnHeaderCell>
             ))}
           </Table.Row>
@@ -62,17 +62,23 @@ const TasksTable = async ({ searchParams }: Props) => {
           {tasks.map((task) => (
             <Table.Row key={task.id}>
               <Table.Cell>
-                <Link href={`/tasks/${task.id}`} className='underline hover:text-indigo-700 transition-colors'>
+                <Link
+                  href={`/tasks/${task.id}`}
+                  className="underline hover:text-indigo-700 transition-colors"
+                >
                   {task.title}
                 </Link>
                 <div className="block md:hidden">
                   <TaskStatusBadge status={task.status} />
                 </div>
               </Table.Cell>
-              <Table.Cell className='hidden md:table-cell'>
+              <Table.Cell className="hidden md:table-cell">
                 <TaskStatusBadge status={task.status} />
               </Table.Cell>
-              <Table.Cell className='hidden md:table-cell'>
+              <Table.Cell className="hidden md:table-cell">
+                {task.deadline.toDateString()}
+              </Table.Cell>
+              <Table.Cell className="hidden md:table-cell">
                 {task.createdAt.toDateString()}
               </Table.Cell>
             </Table.Row>
@@ -96,7 +102,12 @@ const columns: {
 }[] = [
   { label: 'Task', value: 'title' },
   { label: 'Status', value: 'status', className: 'hidden md:table-cell' },
-  { label: 'Created at', value: 'createdAt', className: 'hidden md:table-cell' },
+  { label: 'Deadline', value: 'deadline', className: 'hidden md:table-cell' },
+  {
+    label: 'Created at',
+    value: 'createdAt',
+    className: 'hidden md:table-cell',
+  },
 ]
 
 export default TasksTable
