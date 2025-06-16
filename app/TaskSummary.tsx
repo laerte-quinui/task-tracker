@@ -9,12 +9,14 @@ import Link from 'next/link'
 import { TaskStatus } from './generated/prisma'
 
 interface Props {
-  toDo: number
-  doing: number
-  done: number
+  statusQtd: {
+    toDo: number
+    doing: number
+    done: number
+  }
 }
 
-const TaskSummary = ({ toDo, doing, done }: Props) => {
+const TaskSummary = ({ statusQtd: { toDo, doing, done } }: Props) => {
   const containers: {
     label: string
     value: number

@@ -5,18 +5,20 @@ import TaskChart from './TaskChart'
 import TaskSummary from './TaskSummary'
 
 export default async function Home() {
-  const getSatus = async (status: TaskStatus) => {
+  const countSatus = async (status: TaskStatus) => {
     return await prisma.task.count({ where: { status } })
   }
 
-  const toDo = await getSatus('TO_DO')
-  const doing = await getSatus('DOING')
-  const done = await getSatus('DONE')
+  const toDo = await countSatus('TO_DO')
+  const doing = await countSatus('DOING')
+  const done = await countSatus('DONE')
+
+  const statusQtd = { toDo, doing, done }
 
   return (
     <Flex gap="4" direction="column">
-      <TaskSummary toDo={toDo} doing={doing} done={done} />
-      <TaskChart toDo={toDo} doing={doing} done={done} />
+      <TaskSummary statusQtd={statusQtd} />
+      <TaskChart statusQtd={statusQtd} />
     </Flex>
   )
 }

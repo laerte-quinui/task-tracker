@@ -10,12 +10,14 @@ import {
 } from 'recharts'
 
 interface Props {
-  toDo: number
-  doing: number
-  done: number
+  statusQtd: {
+    toDo: number
+    doing: number
+    done: number
+  }
 }
 
-const TaskChart = ({ toDo, doing, done }: Props) => {
+const TaskChart = ({ statusQtd: { toDo, doing, done } }: Props) => {
   const data = [
     { label: 'To do', value: toDo },
     { label: 'Doing', value: doing },
