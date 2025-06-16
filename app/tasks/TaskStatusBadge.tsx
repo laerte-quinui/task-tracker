@@ -5,11 +5,11 @@ import { TaskStatus } from '../generated/prisma'
 
 const statusMap: Record<
   TaskStatus,
-  { label: string; color: 'orange' | 'indigo' | 'green' }
+  { label: string; color: 'orange' | 'sky' | 'lime' }
 > = {
   TO_DO: { label: 'To do', color: 'orange' },
-  DOING: { label: 'Doing', color: 'indigo' },
-  DONE: { label: 'Done', color: 'green' },
+  DOING: { label: 'Doing', color: 'sky' },
+  DONE: { label: 'Done', color: 'lime' },
 }
 
 const TaskStatusBadge = ({

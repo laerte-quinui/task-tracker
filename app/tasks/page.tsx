@@ -1,22 +1,25 @@
-import { Box, Flex } from "@radix-ui/themes"
-import { Task, TaskStatus } from "../generated/prisma"
-import NewTaskButton from "./NewTaskButton"
-import TasksTable from "./TasksTable"
-import TaskStatusFilter from "./TaskStatusFilter"
+import { Box, Flex, Heading } from '@radix-ui/themes'
+import { Task, TaskStatus } from '../generated/prisma'
+import NewTaskButton from './NewTaskButton'
+import TasksTable from './TasksTable'
+import TaskStatusFilter from './TaskStatusFilter'
 
 export interface TasksQuery {
-  status: TaskStatus,
-  orderBy: keyof Task,
+  status: TaskStatus
+  orderBy: keyof Task
   page: string
 }
 interface Props {
   searchParams: Promise<TasksQuery>
 }
 
-const TasksPage = async ({ searchParams }: Props ) => {
-
+const TasksPage = async ({ searchParams }: Props) => {
   return (
     <Box>
+      <Heading size="7" mb="4" className="text-stone-600">
+        My tasks
+      </Heading>
+
       <Flex mb="4">
         <TaskStatusFilter />
         <NewTaskButton />

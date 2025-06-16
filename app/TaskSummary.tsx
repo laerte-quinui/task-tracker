@@ -22,7 +22,7 @@ const TaskSummary = ({ statusQtd: { toDo, doing, done } }: Props) => {
     value: number
     status: TaskStatus
     icon: {
-      color: 'orange' | 'indigo' | 'green'
+      color: 'orange' | 'sky' | 'lime'
       svg: IconSvgElement
     }
   }[] = [
@@ -36,13 +36,13 @@ const TaskSummary = ({ statusQtd: { toDo, doing, done } }: Props) => {
       label: 'Doing',
       value: doing,
       status: 'DOING',
-      icon: { color: 'indigo', svg: Progress01Icon },
+      icon: { color: 'sky', svg: Progress01Icon },
     },
     {
       label: 'Done',
       value: done,
       status: 'DONE',
-      icon: { color: 'green', svg: CheckmarkCircle02Icon },
+      icon: { color: 'lime', svg: CheckmarkCircle02Icon },
     },
   ]
 
