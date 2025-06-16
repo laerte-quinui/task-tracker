@@ -1,4 +1,5 @@
 'use client'
+import DatePicker from '@/app/components/DatePicker'
 import ErrorMessage from '@/app/components/ErrorMessage'
 import { Task } from '@/app/generated/prisma'
 import { patchTaskSchema } from '@/app/validationSchemas'
@@ -64,16 +65,26 @@ const TaskForm = ({ task }: { task?: Task }) => {
       />
       <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-      <Flex>
+      <Flex gap="4">
         <Controller
           name="status"
           control={control}
-          defaultValue={task?.status}
+          defaultValue={task?.status || 'TO_DO'}
           render={({ field }) => <SelectStatus {...field} />}
         />
+
+        <Flex direction="column">
+          <Controller
+            name="deadline"
+            control={control}
+            defaultValue={task?.deadline || new Date()}
+            render={({ field }) => <DatePicker {...field} clearBtn={false} />}
+          />
+          <ErrorMessage>{errors.deadline?.message}</ErrorMessage>
+        </Flex>
       </Flex>
 
-      <Button disabled={isSubmitting} loading={isSubmitting}>
+      <Button disabled={isSubmitting} loading={isSubmitting} className="">
         {!task ? 'Create new task' : 'Save changes'}
       </Button>
     </form>

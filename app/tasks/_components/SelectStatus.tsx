@@ -39,7 +39,7 @@ const SelectStatus = ({ ...field }) => {
       defaultValue={field.value ?? 'TO_DO'}
       onValueChange={field.onChange}
     >
-      <Select.Trigger />
+      <Select.Trigger value={field.value ?? 'TO_DO'} />
       <Select.Content ref={field.ref} variant="soft">
         {statuses.map((status) => (
           <Select.Item

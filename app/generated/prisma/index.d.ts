@@ -1368,6 +1368,7 @@ export namespace Prisma {
     description: string | null
     status: $Enums.TaskStatus | null
     createdAt: Date | null
+    deadline: Date | null
     updatedAt: Date | null
   }
 
@@ -1377,6 +1378,7 @@ export namespace Prisma {
     description: string | null
     status: $Enums.TaskStatus | null
     createdAt: Date | null
+    deadline: Date | null
     updatedAt: Date | null
   }
 
@@ -1386,6 +1388,7 @@ export namespace Prisma {
     description: number
     status: number
     createdAt: number
+    deadline: number
     updatedAt: number
     _all: number
   }
@@ -1405,6 +1408,7 @@ export namespace Prisma {
     description?: true
     status?: true
     createdAt?: true
+    deadline?: true
     updatedAt?: true
   }
 
@@ -1414,6 +1418,7 @@ export namespace Prisma {
     description?: true
     status?: true
     createdAt?: true
+    deadline?: true
     updatedAt?: true
   }
 
@@ -1423,6 +1428,7 @@ export namespace Prisma {
     description?: true
     status?: true
     createdAt?: true
+    deadline?: true
     updatedAt?: true
     _all?: true
   }
@@ -1519,6 +1525,7 @@ export namespace Prisma {
     description: string
     status: $Enums.TaskStatus
     createdAt: Date
+    deadline: Date
     updatedAt: Date
     _count: TaskCountAggregateOutputType | null
     _avg: TaskAvgAggregateOutputType | null
@@ -1547,6 +1554,7 @@ export namespace Prisma {
     description?: boolean
     status?: boolean
     createdAt?: boolean
+    deadline?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["task"]>
 
@@ -1558,10 +1566,11 @@ export namespace Prisma {
     description?: boolean
     status?: boolean
     createdAt?: boolean
+    deadline?: boolean
     updatedAt?: boolean
   }
 
-  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "status" | "createdAt" | "deadline" | "updatedAt", ExtArgs["result"]["task"]>
 
   export type $TaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Task"
@@ -1572,6 +1581,7 @@ export namespace Prisma {
       description: string
       status: $Enums.TaskStatus
       createdAt: Date
+      deadline: Date
       updatedAt: Date
     }, ExtArgs["result"]["task"]>
     composites: {}
@@ -1947,6 +1957,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Task", 'String'>
     readonly status: FieldRef<"Task", 'TaskStatus'>
     readonly createdAt: FieldRef<"Task", 'DateTime'>
+    readonly deadline: FieldRef<"Task", 'DateTime'>
     readonly updatedAt: FieldRef<"Task", 'DateTime'>
   }
     
@@ -7225,6 +7236,7 @@ export namespace Prisma {
     description: 'description',
     status: 'status',
     createdAt: 'createdAt',
+    deadline: 'deadline',
     updatedAt: 'updatedAt'
   };
 
@@ -7441,6 +7453,7 @@ export namespace Prisma {
     description?: StringFilter<"Task"> | string
     status?: EnumTaskStatusFilter<"Task"> | $Enums.TaskStatus
     createdAt?: DateTimeFilter<"Task"> | Date | string
+    deadline?: DateTimeFilter<"Task"> | Date | string
     updatedAt?: DateTimeFilter<"Task"> | Date | string
   }
 
@@ -7450,6 +7463,7 @@ export namespace Prisma {
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    deadline?: SortOrder
     updatedAt?: SortOrder
     _relevance?: TaskOrderByRelevanceInput
   }
@@ -7463,6 +7477,7 @@ export namespace Prisma {
     description?: StringFilter<"Task"> | string
     status?: EnumTaskStatusFilter<"Task"> | $Enums.TaskStatus
     createdAt?: DateTimeFilter<"Task"> | Date | string
+    deadline?: DateTimeFilter<"Task"> | Date | string
     updatedAt?: DateTimeFilter<"Task"> | Date | string
   }, "id">
 
@@ -7472,6 +7487,7 @@ export namespace Prisma {
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    deadline?: SortOrder
     updatedAt?: SortOrder
     _count?: TaskCountOrderByAggregateInput
     _avg?: TaskAvgOrderByAggregateInput
@@ -7489,6 +7505,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Task"> | string
     status?: EnumTaskStatusWithAggregatesFilter<"Task"> | $Enums.TaskStatus
     createdAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
+    deadline?: DateTimeWithAggregatesFilter<"Task"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
   }
 
@@ -7862,6 +7879,7 @@ export namespace Prisma {
     description: string
     status?: $Enums.TaskStatus
     createdAt?: Date | string
+    deadline?: Date | string
     updatedAt?: Date | string
   }
 
@@ -7871,6 +7889,7 @@ export namespace Prisma {
     description: string
     status?: $Enums.TaskStatus
     createdAt?: Date | string
+    deadline?: Date | string
     updatedAt?: Date | string
   }
 
@@ -7879,6 +7898,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7888,6 +7908,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7897,6 +7918,7 @@ export namespace Prisma {
     description: string
     status?: $Enums.TaskStatus
     createdAt?: Date | string
+    deadline?: Date | string
     updatedAt?: Date | string
   }
 
@@ -7905,6 +7927,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7914,6 +7937,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8367,6 +8391,7 @@ export namespace Prisma {
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    deadline?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -8380,6 +8405,7 @@ export namespace Prisma {
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    deadline?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -8389,6 +8415,7 @@ export namespace Prisma {
     description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    deadline?: SortOrder
     updatedAt?: SortOrder
   }
 

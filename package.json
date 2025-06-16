@@ -26,6 +26,7 @@
     "react-markdown": "^10.1.0",
     "react-simplemde-editor": "^5.2.0",
     "recharts": "^2.15.3",
+    "tailwind-datepicker-react": "^1.4.3",
     "zod": "^3.25.3"
   },
   "devDependencies": {
