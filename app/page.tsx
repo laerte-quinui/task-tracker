@@ -1,6 +1,8 @@
 import { prisma } from '@/prisma/client'
-import TaskSumary from './TaskSummary'
+import { Flex } from '@radix-ui/themes'
 import { TaskStatus } from './generated/prisma'
+import TaskChart from './TaskChart'
+import TaskSummary from './TaskSummary'
 
 export default async function Home() {
   const getSatus = async (status: TaskStatus) => {
@@ -11,5 +13,10 @@ export default async function Home() {
   const doing = await getSatus('DOING')
   const done = await getSatus('DONE')
 
-  return <TaskSumary to_do={toDo} doing={doing} done={done} />
+  return (
+    <Flex gap="4" direction="column">
+      <TaskSummary toDo={toDo} doing={doing} done={done} />
+      <TaskChart toDo={toDo} doing={doing} done={done} />
+    </Flex>
+  )
 }
