@@ -1,18 +1,10 @@
-import { prisma } from '@/prisma/client'
 import { Flex } from '@radix-ui/themes'
-import { TaskStatus } from './generated/prisma'
 import TaskChart from './TaskChart'
 import TaskSummary from './TaskSummary'
+import { countTasks } from './utils/tasks/countTasks'
 
 export default async function Home() {
-  const countSatus = async (status: TaskStatus) => {
-    return await prisma.task.count({ where: { status } })
-  }
-
-  const toDo = await countSatus('TO_DO')
-  const doing = await countSatus('DOING')
-  const done = await countSatus('DONE')
-
+  const { toDo, doing, done } = await countTasks()
   const statusQtd = { toDo, doing, done }
 
   return (
