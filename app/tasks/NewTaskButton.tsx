@@ -6,12 +6,9 @@ import Link from 'next/link'
 
 const NewTaskButton = () => {
   return (
-    <Link href='/tasks/new' className="ml-auto flex">
+    <Link href="/tasks/new" className="flex">
       <Button>
-        <HugeiconsIcon
-          icon={PlusSignIcon}
-          className="size-4"
-        />
+        <HugeiconsIcon icon={PlusSignIcon} className="size-4" />
         New task
       </Button>
     </Link>

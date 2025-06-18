@@ -10,7 +10,15 @@ import { useState } from 'react'
 import KanbanColumn, { KanbanColumnProps } from './KanbanColumn'
 import { TaskCardProps } from './TaskCard'
 
-const KanbanBoard = () => {
+interface Props {
+  statusQtd: {
+    toDo: number
+    doing: number
+    done: number
+  }
+}
+
+const KanbanBoard = ({ statusQtd }: Props) => {
   const [tasks] = useState<TaskCardProps[]>([
     {
       id: 'test',

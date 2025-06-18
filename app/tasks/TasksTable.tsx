@@ -1,46 +1,34 @@
-import { prisma } from '@/prisma/client'
 import { ArrowUp02Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Table } from '@radix-ui/themes'
 import Link from 'next/link'
 import Pagination from '../components/Pagination'
-import { Task, TaskStatus } from '../generated/prisma'
+import { Task } from '../generated/prisma'
 import TaskStatusBadge from './TaskStatusBadge'
-import { TasksQuery } from './page'
 
 interface Props {
-  searchParams: Promise<TasksQuery>
+  tasks: Task[]
+  tasksTotal: number
+  currentPage: number
+  pageSize: number
+  status?: string
+  orderBy?: keyof Task
 }
 
-const TasksTable = async ({ searchParams }: Props) => {
-  const { status: statusFilter, orderBy, page } = await searchParams
-
-  const currentPage = parseInt(page) || 1
-  const pageSize = 10
-
-  const validStatuses = Object.values(TaskStatus)
-  const status = validStatuses.includes(statusFilter!)
-    ? statusFilter
-    : undefined
-
-  const validOrder = columns.map((column) => column.value).includes(orderBy!)
-    ? { [orderBy!]: 'asc' }
-    : undefined
-
-  const tasks = await prisma.task.findMany({
-    where: { status },
-    orderBy: validOrder,
-    skip: (currentPage - 1) * pageSize,
-    take: pageSize,
-  })
-  const tasksTotal = await prisma.task.count({ where: { status } })
-
+const TasksTable = async ({
+  tasks,
+  tasksTotal,
+  currentPage,
+  pageSize,
+  status,
+  orderBy,
+}: Props) => {
   return (
     <>
       <Table.Root variant="surface" mb="2">
         <Table.Header>
           <Table.Row>
-            {columns.map((column) => (
+            {tableColumns.map((column) => (
               <Table.ColumnHeaderCell
                 key={column.value}
                 className={column.className}
@@ -95,7 +83,7 @@ const TasksTable = async ({ searchParams }: Props) => {
   )
 }
 
-const columns: {
+export const tableColumns: {
   label: string
   value: keyof Task
   className?: string

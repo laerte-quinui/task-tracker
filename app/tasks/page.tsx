@@ -1,19 +1,49 @@
+import { prisma } from '@/prisma/client'
 import { Box, Flex, Heading } from '@radix-ui/themes'
 import { Task, TaskStatus } from '../generated/prisma'
+import { countTasks } from '../utils/tasks/countTasks'
 import KanbanBoard from './KanbanBoard'
+import LayoutButton from './LayoutButton'
 import NewTaskButton from './NewTaskButton'
 import TaskStatusFilter from './TaskStatusFilter'
+import TasksTable, { tableColumns } from './TasksTable'
 
 export interface TasksQuery {
   status: TaskStatus
   orderBy: keyof Task
   page: string
+  layout: 'kanban' | 'table'
 }
 interface Props {
   searchParams: Promise<TasksQuery>
 }
 
 const TasksPage = async ({ searchParams }: Props) => {
+  const { status: statusFilter, orderBy, page, layout } = await searchParams
+  const { toDo, doing, done, total: tasksTotal } = await countTasks()
+
+  const statusQtd = { toDo, doing, done }
+  const currentPage = parseInt(page) || 1
+  const pageSize = 10
+
+  const validStatuses = Object.values(TaskStatus)
+  const status = validStatuses.includes(statusFilter!)
+    ? statusFilter
+    : undefined
+
+  const validOrder = tableColumns
+    .map((column) => column.value)
+    .includes(orderBy!)
+    ? { [orderBy!]: 'asc' }
+    : undefined
+
+  const tasks = await prisma.task.findMany({
+    where: { status },
+    orderBy: validOrder,
+    skip: (currentPage - 1) * pageSize,
+    take: pageSize,
+  })
+
   return (
     <Box>
       <Heading size="7" mb="4" className="text-stone-600">
@@ -22,12 +52,25 @@ const TasksPage = async ({ searchParams }: Props) => {
 
       <Flex mb="4">
         <TaskStatusFilter />
-        <NewTaskButton />
+        <Flex ml="auto" gap="2">
+          <LayoutButton layout={layout || 'kanban'} />
+          <NewTaskButton />
+        </Flex>
       </Flex>
 
-      <KanbanBoard />
-
-      {/* <TasksTable searchParams={searchParams} /> */}
+      {(layout === 'kanban' || !layout) && (
+        <KanbanBoard statusQtd={statusQtd} />
+      )}
+      {layout === 'table' && (
+        <TasksTable
+          tasks={tasks}
+          tasksTotal={tasksTotal}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          status={status}
+          orderBy={orderBy}
+        />
+      )}
     </Box>
   )
 }

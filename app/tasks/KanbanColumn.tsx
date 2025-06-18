@@ -21,20 +21,20 @@ const KanbanColumn = ({ status, title, icon, tasks }: Props) => {
     id: status,
     type: 'column',
     accept: 'item',
-    // collisionPriority: CollisionPriority.Low,
   })
-  const style = isDropTarget
-    ? {
-        background: 'var(--color-stone-50)',
-        borderColor: 'var(--color-stone-300)',
-      }
-    : undefined
 
   const colors = {
     TO_DO: { bg: 'bg-orange-50', text: 'text-orange-800' },
     DOING: { bg: 'bg-sky-50', text: 'text-sky-800' },
     DONE: { bg: 'bg-lime-50', text: 'text-lime-800' },
   }
+
+  const style = isDropTarget
+    ? {
+        background: 'var(--color-stone-50)',
+        borderColor: 'var(--color-stone-300)',
+      }
+    : undefined
 
   return (
     <Flex gap="2" direction="column" className="w-full">
@@ -49,8 +49,8 @@ const KanbanColumn = ({ status, title, icon, tasks }: Props) => {
 
       <Flex
         ref={ref}
-        direction="column"
         gap="2"
+        direction="column"
         className="h-4/5 rounded-lg border-dashed border-transparent transition-all border"
         style={style}
       >
