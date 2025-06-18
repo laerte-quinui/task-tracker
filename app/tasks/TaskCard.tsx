@@ -3,7 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Badge, Card, Text } from '@radix-ui/themes'
 import { TaskStatus } from '../generated/prisma'
 
-interface Props {
+export interface TaskCardProps {
   id: string
   title: string
   description: string
@@ -11,9 +11,9 @@ interface Props {
   deadline: Date
 }
 
-const TaskCard = ({ title, description, deadline }: Props) => {
+const TaskCard = ({ title, description, deadline }: TaskCardProps) => {
   return (
-    <Card className="cursor-pointer w-fit">
+    <Card className="cursor-grab w-full hover:bg-stone-100 duration-150">
       <Text className="text-stone-800 font-medium">{title}</Text>
       <Text as="p" size="2" className="text-stone-500">
         {description}
