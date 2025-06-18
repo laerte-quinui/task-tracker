@@ -20,9 +20,9 @@ interface Props {
 
 const TasksPage = async ({ searchParams }: Props) => {
   const { status: statusFilter, orderBy, page, layout } = await searchParams
-  const { toDo, doing, done, total: tasksTotal } = await countTasks()
+  const { total: tasksTotal } = await countTasks()
 
-  const statusQtd = { toDo, doing, done }
+  const isTable = layout !== 'kanban'
   const currentPage = parseInt(page) || 1
   const pageSize = 10
 
@@ -39,9 +39,9 @@ const TasksPage = async ({ searchParams }: Props) => {
 
   const tasks = await prisma.task.findMany({
     where: { status },
-    orderBy: validOrder,
-    skip: (currentPage - 1) * pageSize,
-    take: pageSize,
+    orderBy: isTable ? validOrder : undefined,
+    skip: isTable ? (currentPage - 1) * pageSize : undefined,
+    take: isTable ? pageSize : undefined,
   })
 
   return (
@@ -58,9 +58,7 @@ const TasksPage = async ({ searchParams }: Props) => {
         </Flex>
       </Flex>
 
-      {(layout === 'kanban' || !layout) && (
-        <KanbanBoard statusQtd={statusQtd} />
-      )}
+      {(layout === 'kanban' || !layout) && <KanbanBoard tasks={tasks} />}
       {layout === 'table' && (
         <TasksTable
           tasks={tasks}

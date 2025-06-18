@@ -4,7 +4,7 @@ import { Badge, Card, Text } from '@radix-ui/themes'
 import { TaskStatus } from '../generated/prisma'
 
 export interface TaskCardProps {
-  id: string
+  id: number
   title: string
   description: string
   status: TaskStatus

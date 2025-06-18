@@ -1,10 +1,10 @@
 import { useDroppable } from '@dnd-kit/react'
 import { useSortable } from '@dnd-kit/react/sortable'
 import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
-import { Box, Card, Flex, Heading } from '@radix-ui/themes'
+import { Box, Card, Flex, Heading, Text } from '@radix-ui/themes'
 import { PropsWithChildren } from 'react'
-import { TaskStatus } from '../generated/prisma'
-import TaskCard, { TaskCardProps } from './TaskCard'
+import { Task, TaskStatus } from '../generated/prisma'
+import TaskCard from './TaskCard'
 
 export interface KanbanColumnProps {
   status: TaskStatus
@@ -13,7 +13,7 @@ export interface KanbanColumnProps {
 }
 
 interface Props extends KanbanColumnProps {
-  tasks: TaskCardProps[]
+  tasks: Task[]
 }
 
 const KanbanColumn = ({ status, title, icon, tasks }: Props) => {
@@ -44,6 +44,13 @@ const KanbanColumn = ({ status, title, icon, tasks }: Props) => {
           <Heading size="3" weight="medium">
             {title}
           </Heading>
+          <Flex
+            align="center"
+            justify="center"
+            className="p-2 rounded-md ml-auto bg-white size-6"
+          >
+            <Text size="2">{tasks.length}</Text>
+          </Flex>
         </Flex>
       </Card>
 
@@ -72,7 +79,7 @@ const Draggable = ({
   status,
   children,
 }: {
-  id: string
+  id: number
   index: number
   status: TaskStatus
   children: PropsWithChildren['children']

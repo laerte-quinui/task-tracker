@@ -6,57 +6,10 @@ import {
   Progress01Icon,
 } from '@hugeicons/core-free-icons'
 import { Flex } from '@radix-ui/themes'
-import { useState } from 'react'
+import { Task } from '../generated/prisma'
 import KanbanColumn, { KanbanColumnProps } from './KanbanColumn'
-import { TaskCardProps } from './TaskCard'
 
-interface Props {
-  statusQtd: {
-    toDo: number
-    doing: number
-    done: number
-  }
-}
-
-const KanbanBoard = ({ statusQtd }: Props) => {
-  const [tasks] = useState<TaskCardProps[]>([
-    {
-      id: 'test',
-      title: 'Task test',
-      description: 'This is a test to the task card in the kanban',
-      deadline: new Date(),
-      status: 'DOING',
-    },
-    {
-      id: 'test2',
-      title: 'Make the kanban work',
-      description: 'Step 1: do a pact with the devil',
-      deadline: new Date(),
-      status: 'TO_DO',
-    },
-    {
-      id: 'test3',
-      title: 'Task test',
-      description: 'This is a test to the task card in the kanban',
-      deadline: new Date(),
-      status: 'DOING',
-    },
-    {
-      id: 'test4',
-      title: 'Task test',
-      description: 'This is a test to the task card in the kanban',
-      deadline: new Date(),
-      status: 'DOING',
-    },
-    {
-      id: 'test5',
-      title: 'Task test',
-      description: 'This is a test to the task card in the kanban',
-      deadline: new Date(),
-      status: 'DONE',
-    },
-  ])
-
+const KanbanBoard = ({ tasks }: { tasks: Task[] }) => {
   return (
     <DragDropProvider>
       <Flex gap="4">
