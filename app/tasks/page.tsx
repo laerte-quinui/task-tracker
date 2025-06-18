@@ -1,7 +1,7 @@
 import { Box, Flex, Heading } from '@radix-ui/themes'
 import { Task, TaskStatus } from '../generated/prisma'
+import KanbanBoard from './KanbanBoard'
 import NewTaskButton from './NewTaskButton'
-import TasksTable from './TasksTable'
 import TaskStatusFilter from './TaskStatusFilter'
 
 export interface TasksQuery {
@@ -25,7 +25,9 @@ const TasksPage = async ({ searchParams }: Props) => {
         <NewTaskButton />
       </Flex>
 
-      <TasksTable searchParams={searchParams} />
+      <KanbanBoard />
+
+      {/* <TasksTable searchParams={searchParams} /> */}
     </Box>
   )
 }
