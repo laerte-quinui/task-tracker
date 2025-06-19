@@ -1,7 +1,6 @@
-import { AlarmClockIcon } from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
-import { Badge, Card, Text } from '@radix-ui/themes'
+import { Card, Text } from '@radix-ui/themes'
 import Link from 'next/link'
+import DeadlineBadge from '../components/DeadlineBadge'
 
 export interface TaskCardProps {
   id: number
@@ -19,10 +18,7 @@ const TaskCard = ({ id, title, description, deadline }: TaskCardProps) => {
           {description}
         </Text>
 
-        <Badge color="gray" mt="4">
-          <HugeiconsIcon icon={AlarmClockIcon} size={12} />
-          <Text size="1">{deadline.toDateString()}</Text>
-        </Badge>
+        <DeadlineBadge deadline={deadline} />
       </Card>
     </Link>
   )

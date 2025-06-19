@@ -10,7 +10,7 @@ import {
 import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
 import { Box, Flex, Grid, Heading, Separator, Text } from '@radix-ui/themes'
 import MarkdownRender from 'react-markdown'
-import TaskStatusBadge from '../TaskStatusBadge'
+import TaskStatusBadge from '../../components/TaskStatusBadge'
 
 const TaskDetails = ({ task }: { task: Task }) => {
   const statusIcon = {

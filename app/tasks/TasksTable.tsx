@@ -3,8 +3,8 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Table } from '@radix-ui/themes'
 import Link from 'next/link'
 import Pagination from '../components/Pagination'
+import TaskStatusBadge from '../components/TaskStatusBadge'
 import { Task } from '../generated/prisma'
-import TaskStatusBadge from './TaskStatusBadge'
 
 interface Props {
   tasks: Task[]
@@ -52,7 +52,7 @@ const TasksTable = async ({
               <Table.Cell>
                 <Link
                   href={`/tasks/${task.id}`}
-                  className="underline hover:text-indigo-700 transition-colors"
+                  className="underline hover:text-lime-700 transition-colors"
                 >
                   {task.title}
                 </Link>
