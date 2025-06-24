@@ -7,11 +7,19 @@ export interface TaskCardProps {
   title: string
   description: string
   deadline: Date
+  ref: (a?: HTMLElement | null) => void
 }
 
-const TaskCard = ({ id, title, description, deadline }: TaskCardProps) => {
+const TaskCard = ({
+  id,
+  title,
+  description,
+  deadline,
+  ref,
+  ...rest
+}: TaskCardProps) => {
   return (
-    <Link href={`/tasks/${id}`}>
+    <Link href={`/tasks/${id}`} ref={ref} {...rest}>
       <Card className="cursor-grab w-full hover:bg-stone-100 duration-150">
         <Text className="text-stone-800 font-medium">{title}</Text>
         <Text as="p" size="2" className="text-stone-500">
