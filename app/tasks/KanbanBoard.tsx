@@ -6,14 +6,17 @@ import {
   Progress01Icon,
 } from '@hugeicons/core-free-icons'
 import { Flex } from '@radix-ui/themes'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Task, TaskStatus } from '../generated/prisma'
 import KanbanColumn, { KanbanColumnProps } from './KanbanColumn'
 
 const KanbanBoard = ({ tasks }: { tasks: Task[] }) => {
+  const router = useRouter()
   const [items, setItems] = useState(tasks)
 
-  const handleDragEnd = (results: DropResult) => {
+  const handleDragEnd = async (results: DropResult) => {
     const { source, destination } = results
 
     if (!destination) return
@@ -60,6 +63,17 @@ const KanbanBoard = ({ tasks }: { tasks: Task[] }) => {
         ...destItems,
       ]
       setItems(newItems)
+
+      // Update the task status in the backend
+      try {
+        await axios.patch(`/api/tasks/${movedItem.id}`, {
+          status: updatedItem.status,
+        })
+        router.refresh()
+      } catch (error) {
+        console.error('Failed to update task status:', error)
+        setItems(items)
+      }
     }
   }
 

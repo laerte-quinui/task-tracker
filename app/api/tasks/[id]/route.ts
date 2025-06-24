@@ -1,4 +1,4 @@
-import { taskSchema } from '@/app/validationSchemas'
+import { patchTaskSchema } from '@/app/validationSchemas'
 import { auth } from '@/auth'
 import { prisma } from '@/prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
@@ -11,8 +11,9 @@ export async function PATCH(
   if (!session) return NextResponse.json({}, { status: 401 })
 
   const body = await request.json()
-  const deadline = new Date(body.deadline)
-  const validation = taskSchema.safeParse({ ...body, deadline })
+  const deadline = body.deadline ? new Date(body.deadline) : undefined
+
+  const validation = patchTaskSchema.safeParse({ ...body, deadline })
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 })
 

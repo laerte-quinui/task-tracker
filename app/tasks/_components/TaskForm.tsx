@@ -36,7 +36,7 @@ const TaskForm = ({ task }: { task?: Task }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true)
-      if (task) await axios.patch('/api/tasks/' + task.id, data)
+      if (task) await axios.patch(`/api/tasks/${task.id}`, data)
       else await axios.post('/api/tasks', data)
       router.push('/tasks')
       router.refresh()
