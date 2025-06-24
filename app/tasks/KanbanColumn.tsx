@@ -28,8 +28,8 @@ const KanbanColumn = ({ status, title, icon, tasks }: Props) => {
 
   return (
     <Flex gap="2" direction="column" className="w-full">
-      <Card variant="ghost" className={`!m-0 ${colors[status].bg}`}>
-        <Flex align="center" gap="2" className={colors[status].text}>
+      <Card variant="ghost" className={`!m-0 min-h-12 ${colors[status].bg}`}>
+        <Flex align="center" gap="2" className={`h-fit ${colors[status].text}`}>
           <HugeiconsIcon icon={icon} size={18} />
           <Heading size="3" weight="medium">
             {title}

@@ -1,5 +1,7 @@
 import { prisma } from '@/prisma/client'
+import { TaskAdd01Icon } from '@hugeicons/core-free-icons'
 import { Box, Flex, Heading } from '@radix-ui/themes'
+import EmptyStateMessage from '../components/EmptyStateMessage'
 import { Task, TaskStatus } from '../generated/prisma'
 import { countTasks } from '../utils/tasks/countTasks'
 import KanbanBoard from './KanbanBoard'
@@ -58,8 +60,19 @@ const TasksPage = async ({ searchParams }: Props) => {
         </Flex>
       </Flex>
 
-      {(layout === 'kanban' || !layout) && <KanbanBoard tasks={tasks} />}
-      {layout === 'table' && (
+      {tasksTotal === 0 && (
+        <EmptyStateMessage
+          className="mt-16"
+          icon={TaskAdd01Icon}
+          title="You don't have any tasks"
+          description="Start by creating a new one clicking in the green button above!"
+        />
+      )}
+
+      {(layout === 'kanban' || !layout) && tasksTotal > 0 && (
+        <KanbanBoard tasks={tasks} />
+      )}
+      {layout === 'table' && tasksTotal > 0 && (
         <TasksTable
           tasks={tasks}
           tasksTotal={tasksTotal}

@@ -1,7 +1,8 @@
 import { prisma } from '@/prisma/client'
-import { Flex, Heading, Table } from '@radix-ui/themes'
+import { Card, Flex, Heading, Table } from '@radix-ui/themes'
 import Link from 'next/link'
 import DeadlineBadge from './components/DeadlineBadge'
+import EmptyStateMessage from './components/EmptyStateMessage'
 import TaskStatusBadge from './components/TaskStatusBadge'
 
 const UpcomingDeadlines = async () => {
@@ -17,6 +18,22 @@ const UpcomingDeadlines = async () => {
     orderBy: { deadline: 'asc' },
     take: 10,
   })
+
+  if (!tasks.length)
+    return (
+      <Flex gap="2" direction="column" className="h-full">
+        <Heading size="7" className="text-stone-600">
+          Upcoming Deadlines
+        </Heading>
+        <Card className="h-full">
+          <EmptyStateMessage
+            className="h-full"
+            title="Just relax and enjoy"
+            description="You don't have any tasks with a upcoming deadline!"
+          />
+        </Card>
+      </Flex>
+    )
 
   return (
     <Flex direction="column" gap="2">
