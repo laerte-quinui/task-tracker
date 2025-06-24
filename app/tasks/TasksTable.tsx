@@ -11,17 +11,15 @@ interface Props {
   tasksTotal: number
   currentPage: number
   pageSize: number
-  status?: string
-  orderBy?: keyof Task
+  filters?: { status?: string; orderBy?: keyof Task; layout?: string }
 }
 
-const TasksTable = async ({
+const TasksTable = ({
   tasks,
   tasksTotal,
   currentPage,
   pageSize,
-  status,
-  orderBy,
+  filters,
 }: Props) => {
   return (
     <>
@@ -33,10 +31,18 @@ const TasksTable = async ({
                 key={column.value}
                 className={column.className}
               >
-                <Link href={{ query: { status, orderBy: column.value } }}>
+                <Link
+                  href={{
+                    query: {
+                      status: filters?.status,
+                      layout: filters?.layout,
+                      orderBy: column.value,
+                    },
+                  }}
+                >
                   {column.label}
                 </Link>
-                {column.value === orderBy && (
+                {column.value === filters?.orderBy && (
                   <HugeiconsIcon
                     icon={ArrowUp02Icon}
                     className="inline ml-1 size-4"

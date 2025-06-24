@@ -7,14 +7,20 @@ import {
 } from '@hugeicons/core-free-icons'
 import { Flex } from '@radix-ui/themes'
 import axios from 'axios'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { Task, TaskStatus } from '../generated/prisma'
 import KanbanColumn, { KanbanColumnProps } from './KanbanColumn'
 
 const KanbanBoard = ({ tasks }: { tasks: Task[] }) => {
   const router = useRouter()
+  const searchParams = useSearchParams()
+
   const [items, setItems] = useState(tasks)
+
+  useEffect(() => {
+    setItems(tasks)
+  }, [tasks, searchParams])
 
   const handleDragEnd = async (results: DropResult) => {
     const { source, destination } = results

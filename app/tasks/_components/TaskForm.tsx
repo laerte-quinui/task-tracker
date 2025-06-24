@@ -22,6 +22,7 @@ type TaskFormData = z.infer<typeof patchTaskSchema>
 
 const TaskForm = ({ task }: { task?: Task }) => {
   const router = useRouter()
+
   const {
     register,
     control,
@@ -38,6 +39,7 @@ const TaskForm = ({ task }: { task?: Task }) => {
       setSubmitting(true)
       if (task) await axios.patch(`/api/tasks/${task.id}`, data)
       else await axios.post('/api/tasks', data)
+
       router.push('/tasks')
       router.refresh()
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -65,8 +65,7 @@ const TasksPage = async ({ searchParams }: Props) => {
           tasksTotal={tasksTotal}
           currentPage={currentPage}
           pageSize={pageSize}
-          status={status}
-          orderBy={orderBy}
+          filters={{ status, orderBy, layout }}
         />
       )}
     </Box>
