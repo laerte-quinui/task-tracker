@@ -5,7 +5,7 @@ import {
   DashedLineCircleIcon,
   Progress01Icon,
 } from '@hugeicons/core-free-icons'
-import { Flex } from '@radix-ui/themes'
+import { Grid } from '@radix-ui/themes'
 import axios from 'axios'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -85,7 +85,11 @@ const KanbanBoard = ({ tasks }: { tasks: Task[] }) => {
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Flex gap="4">
+      <Grid
+        gap={{ initial: '8', md: '4' }}
+        columns={{ initial: '1', md: '3' }}
+        className="h-full"
+      >
         {columns.map((column) => (
           <KanbanColumn
             {...column}
@@ -93,7 +97,7 @@ const KanbanBoard = ({ tasks }: { tasks: Task[] }) => {
             tasks={items.filter((item) => item.status === column.status)}
           />
         ))}
-      </Flex>
+      </Grid>
     </DragDropContext>
   )
 }

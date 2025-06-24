@@ -52,7 +52,7 @@ const TaskSummary = ({ statusQtd: { toDo, doing, done } }: Props) => {
         Task summary
       </Heading>
 
-      <Grid columns={{ md: '3' }} gap="4">
+      <Grid columns={{ sm: '3' }} gap="4">
         {containers.map((container) => (
           <Link
             key={container.status}

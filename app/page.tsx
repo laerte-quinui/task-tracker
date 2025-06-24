@@ -9,12 +9,16 @@ export default async function Home() {
   const statusQtd = { toDo, doing, done }
 
   return (
-    <Grid columns="12" gap="4">
-      <Flex gap="4" direction="column" className="col-span-8">
+    <Grid
+      columns={{ initial: '4', md: '8', lg: '12' }}
+      gap={{ initial: '8', lg: '4' }}
+      pb="8"
+    >
+      <Flex gap="4" direction="column" className="col-span-4 md:col-span-8">
         <TaskSummary statusQtd={statusQtd} />
         <TaskChart statusQtd={statusQtd} />
       </Flex>
-      <Box className="col-span-4">
+      <Box className="col-span-4 sm:col-span-8 xl:col-span-4">
         <UpcomingDeadlines />
       </Box>
     </Grid>

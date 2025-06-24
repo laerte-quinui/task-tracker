@@ -24,7 +24,7 @@ const TaskDetails = ({ task }: { task: Task }) => {
       <Heading>{task.title}</Heading>
       <Grid columns="6" gapY="2" gapX="4" mt="4">
         <DetailLabel label="Status" icon={Tag01Icon} />
-        <Box className="col-span-5">
+        <Box className="col-span-3 md:col-span-5">
           <TaskStatusBadge
             status={task.status}
             size="2"
@@ -33,12 +33,12 @@ const TaskDetails = ({ task }: { task: Task }) => {
         </Box>
 
         <DetailLabel label="Created at" icon={Calendar03Icon} />
-        <Text className="text-stone-500 col-span-5">
+        <Text className="text-stone-500 col-span-3 md:col-span-5">
           {task.createdAt.toDateString()}
         </Text>
 
         <DetailLabel label="Deadline" icon={AlarmClockIcon} />
-        <Text className="text-stone-500 col-span-5">
+        <Text className="text-stone-500 col-span-3 md:col-span-5">
           {task.deadline.toDateString()}
         </Text>
       </Grid>
@@ -65,7 +65,7 @@ const DetailLabel = ({
   icon: IconSvgElement
 }) => {
   return (
-    <Flex align="center" gap="2">
+    <Flex align="center" gap="2" className="col-span-3 md:col-span-1">
       <HugeiconsIcon size={16} icon={icon} className="text-stone-400" />
       <Text size="2" className="text-stone-400">
         {label}
