@@ -37,20 +37,21 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   const session = await auth()
   if (!session) return NextResponse.json({}, { status: 401 })
 
   const task = await prisma.task.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
   })
   if (!task)
     return NextResponse.json("The task doesn't exists", { status: 404 })
 
   await prisma.task.delete({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
   })
 
   return NextResponse.json({})
