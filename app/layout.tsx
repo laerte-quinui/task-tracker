@@ -1,5 +1,6 @@
 import { Container, Theme } from '@radix-ui/themes'
 import '@radix-ui/themes/styles.css'
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import AuthProvider from './auth/Provider'
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Analytics />
         <AuthProvider>
           <Theme accentColor="lime" grayColor="slate" radius="large">
             <NavBar />
