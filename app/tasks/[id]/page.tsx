@@ -13,6 +13,7 @@ import {
 import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
 import { Box, Flex, Grid, Heading, Separator, Text } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'
+import { cache } from 'react'
 import MarkdownRender from 'react-markdown'
 import DeleteTaskButton from './DeleteTaskButton'
 import EditTaskButton from './EditTaskButton'
@@ -21,11 +22,13 @@ interface Props {
   params: { id: string }
 }
 
+const fetchTask = cache((taskId: string) => getTask(taskId))
+
 const TaskDetailsPage = async ({ params }: Props) => {
   const session = await auth()
 
   if (isNaN(parseInt(params.id))) notFound()
-  const task = await getTask(params.id)
+  const task = await fetchTask(params.id)
   if (!task) notFound()
 
   const statusIcon = {
@@ -101,7 +104,7 @@ const DetailLabel = ({
 }
 
 export async function generateMetadata({ params }: Props) {
-  const task = await getTask(params.id)
+  const task = await fetchTask(params.id)
   if (!task) return {}
 
   return {
