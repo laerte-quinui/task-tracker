@@ -2,6 +2,7 @@ import { Draggable, Droppable } from '@hello-pangea/dnd'
 import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
 import { Card, Flex, Heading, Text } from '@radix-ui/themes'
 import { Task, TaskStatus } from '../generated/prisma'
+import { useGetDevice } from '../utils/useGetDevice'
 import TaskCard from './TaskCard'
 
 export interface KanbanColumnProps {
@@ -15,6 +16,7 @@ interface Props extends KanbanColumnProps {
 }
 
 const KanbanColumn = ({ status, title, icon, tasks }: Props) => {
+  const { isDesktop } = useGetDevice()
   const colors = {
     TO_DO: { bg: 'bg-orange-50', text: 'text-orange-800' },
     DOING: { bg: 'bg-sky-50', text: 'text-sky-800' },
@@ -44,15 +46,19 @@ const KanbanColumn = ({ status, title, icon, tasks }: Props) => {
         </Flex>
       </Card>
 
-      <Droppable droppableId={status} type="group">
+      <Droppable
+        droppableId={status}
+        type="group"
+        direction={isDesktop ? 'vertical' : 'horizontal'}
+      >
         {(provided, snapshot) => (
           <Flex
             gap="2"
-            direction="column"
-            className="h-4/5 rounded-xl border-dashed border-transparent transition-all border"
             ref={provided.innerRef}
             {...provided.droppableProps}
             style={snapshot.isDraggingOver ? style : {}}
+            direction={{ initial: 'row', md: 'column' }}
+            className="max-h-11/12 h-full rounded-xl border-dashed border-transparent transition-all border overflow-x-auto lg:overflow-x-hidden"
           >
             {tasks.map((task, index) => (
               <Draggable
