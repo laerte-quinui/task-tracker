@@ -3,19 +3,21 @@ import { notFound } from 'next/navigation'
 import TaskForm from '../../_components/TaskForm'
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 const EditTaskPage = async ({ params }: Props) => {
-  if (isNaN(parseInt(params.id))) notFound()
-  const task = await getTask(params.id)
+  const { id } = await params
+  if (isNaN(parseInt(id))) notFound()
+  const task = await getTask(id)
   if (!task) notFound()
 
   return <TaskForm task={task} />
 }
 
 export async function generateMetadata({ params }: Props) {
-  const task = await getTask(params.id)
+  const { id } = await params
+  const task = await getTask(id)
   if (!task) return {}
 
   return {

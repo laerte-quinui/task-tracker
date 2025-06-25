@@ -19,16 +19,17 @@ import DeleteTaskButton from './DeleteTaskButton'
 import EditTaskButton from './EditTaskButton'
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 const fetchTask = cache((taskId: string) => getTask(taskId))
 
 const TaskDetailsPage = async ({ params }: Props) => {
+  const { id } = await params
   const session = await auth()
 
-  if (isNaN(parseInt(params.id))) notFound()
-  const task = await fetchTask(params.id)
+  if (isNaN(parseInt(id))) notFound()
+  const task = await fetchTask(id)
   if (!task) notFound()
 
   const statusIcon = {
@@ -104,7 +105,8 @@ const DetailLabel = ({
 }
 
 export async function generateMetadata({ params }: Props) {
-  const task = await fetchTask(params.id)
+  const { id } = await params
+  const task = await fetchTask(id)
   if (!task) return {}
 
   return {
