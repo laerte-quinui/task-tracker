@@ -100,4 +100,14 @@ const DetailLabel = ({
   )
 }
 
+export async function generateMetadata({ params }: Props) {
+  const task = await getTask(params.id)
+  if (!task) return {}
+
+  return {
+    title: `Task Tracker - ${task.title}`,
+    description: 'Details of task - ' + task.id,
+  }
+}
+
 export default TaskDetailsPage

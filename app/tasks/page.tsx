@@ -1,6 +1,7 @@
 import { prisma } from '@/prisma/client'
 import { TaskAdd01Icon } from '@hugeicons/core-free-icons'
 import { Box, Flex, Heading } from '@radix-ui/themes'
+import { Metadata } from 'next'
 import EmptyStateMessage from '../components/EmptyStateMessage'
 import { Task, TaskStatus } from '../generated/prisma'
 import { countTasks } from '../utils/tasks/countTasks'
@@ -86,4 +87,10 @@ const TasksPage = async ({ searchParams }: Props) => {
 }
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Task Tracker - List of Tasks',
+  description: 'View all your tasks and manage them efficiently.',
+}
+
 export default TasksPage

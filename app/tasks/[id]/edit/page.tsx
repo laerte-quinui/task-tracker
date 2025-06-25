@@ -7,13 +7,21 @@ interface Props {
 }
 
 const EditTaskPage = async ({ params }: Props) => {
-  if(isNaN(parseInt(params.id))) notFound()
+  if (isNaN(parseInt(params.id))) notFound()
   const task = await getTask(params.id)
-  if(!task) notFound()
+  if (!task) notFound()
 
-  return (
-    <TaskForm task={task} />
-  )
+  return <TaskForm task={task} />
+}
+
+export async function generateMetadata({ params }: Props) {
+  const task = await getTask(params.id)
+  if (!task) return {}
+
+  return {
+    title: `Task Tracker - ${task.title}`,
+    description: 'Edit task - ' + task.id,
+  }
 }
 
 export default EditTaskPage
