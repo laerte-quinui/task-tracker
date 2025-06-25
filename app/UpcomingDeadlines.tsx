@@ -6,10 +6,13 @@ import EmptyStateMessage from './components/EmptyStateMessage'
 import TaskStatusBadge from './components/TaskStatusBadge'
 
 const UpcomingDeadlines = async () => {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
   const tasks = await prisma.task.findMany({
     where: {
       deadline: {
-        gte: new Date(), // Deadlines in the future
+        gte: today,
       },
       status: {
         not: 'DONE',
