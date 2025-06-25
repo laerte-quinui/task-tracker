@@ -1,4 +1,5 @@
 import TaskStatusBadge from '@/app/components/TaskStatusBadge'
+import { formatDate } from '@/app/utils/formatDate'
 import { getTask } from '@/app/utils/tasks'
 import { auth } from '@/auth'
 import {
@@ -58,12 +59,12 @@ const TaskDetailsPage = async ({ params }: Props) => {
 
           <DetailLabel label="Created at" icon={Calendar03Icon} />
           <Text className="text-stone-500 col-span-3 md:col-span-5">
-            {task.createdAt.toDateString()}
+            {formatDate(task.createdAt)}
           </Text>
 
           <DetailLabel label="Deadline" icon={AlarmClockIcon} />
           <Text className="text-stone-500 col-span-3 md:col-span-5">
-            {task.deadline.toDateString()}
+            {formatDate(task.deadline)}
           </Text>
         </Grid>
 

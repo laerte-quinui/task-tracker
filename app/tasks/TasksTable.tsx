@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Pagination from '../components/Pagination'
 import TaskStatusBadge from '../components/TaskStatusBadge'
 import { Task } from '../generated/prisma'
+import { formatDate } from '../utils/formatDate'
 
 interface Props {
   tasks: Task[]
@@ -70,10 +71,10 @@ const TasksTable = ({
                 <TaskStatusBadge status={task.status} />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {task.deadline.toDateString()}
+                {formatDate(task.deadline)}
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {task.createdAt.toDateString()}
+                {formatDate(task.createdAt)}
               </Table.Cell>
             </Table.Row>
           ))}
