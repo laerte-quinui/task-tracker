@@ -8,5 +8,5 @@ export default auth((req) => {
 })
 
 export const config = {
-  matcher: ['/tasks', '/tasks/new', '/tasks/edit/:id+'],
+  matcher: ['/tasks/new', '/tasks/:id+', '/tasks/edit/:id+'],
 }

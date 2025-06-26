@@ -1,13 +1,18 @@
+import { auth } from '@/auth'
 import { Box, Flex, Grid } from '@radix-ui/themes'
 import { Metadata } from 'next'
+import LoggedoutMessage from './LoggedoutMessage'
 import TaskChart from './TaskChart'
 import TaskSummary from './TaskSummary'
 import UpcomingDeadlines from './UpcomingDeadlines'
 import { countTasks } from './utils/tasks/countTasks'
 
 export default async function Home() {
+  const session = await auth()
   const { toDo, doing, done } = await countTasks()
   const statusQtd = { toDo, doing, done }
+
+  if (!session) return <LoggedoutMessage />
 
   return (
     <Grid

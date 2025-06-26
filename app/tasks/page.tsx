@@ -1,7 +1,9 @@
+import { auth } from '@/auth'
 import { prisma } from '@/prisma/client'
 import { TaskAdd01Icon } from '@hugeicons/core-free-icons'
 import { Box, Flex, Heading } from '@radix-ui/themes'
 import { Metadata } from 'next'
+import LoggedoutMessage from '../LoggedoutMessage'
 import EmptyStateMessage from '../components/EmptyStateMessage'
 import { Task, TaskStatus } from '../generated/prisma'
 import { countTasks } from '../utils/tasks/countTasks'
@@ -22,6 +24,9 @@ interface Props {
 }
 
 const TasksPage = async ({ searchParams }: Props) => {
+  const session = await auth()
+  if (!session) return <LoggedoutMessage />
+
   const { status: statusFilter, orderBy, page, layout } = await searchParams
   const { total: tasksTotal } = await countTasks()
 
