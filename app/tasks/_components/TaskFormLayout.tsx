@@ -114,8 +114,8 @@ const TaskFormLayout = ({ task }: { task?: Task }) => {
             <Controller
               name="deadline"
               control={control}
-              defaultValue={task?.deadline || new Date()}
-              render={({ field }) => <DatePicker {...field} clearBtn={false} />}
+              defaultValue={task?.deadline ?? new Date()}
+              render={({ field }) => <DatePicker {...field} />}
             />
           </Flex>
         </Grid>
