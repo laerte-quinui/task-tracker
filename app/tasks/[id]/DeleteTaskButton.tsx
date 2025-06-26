@@ -1,5 +1,9 @@
 'use client'
-import { Alert02Icon, Delete02Icon } from '@hugeicons/core-free-icons'
+import {
+  Alert02Icon,
+  CheckmarkCircle02Icon,
+  Delete02Icon,
+} from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   AlertDialog,
@@ -12,6 +16,7 @@ import {
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 const DeleteTaskButton = ({ taskId }: { taskId: number }) => {
   const router = useRouter()
@@ -22,6 +27,10 @@ const DeleteTaskButton = ({ taskId }: { taskId: number }) => {
     try {
       setDeleting(true)
       await axios.delete('/api/tasks/' + taskId)
+      toast.success('Task deleted successfully!', {
+        position: 'top-right',
+        icon: <HugeiconsIcon size="16px" icon={CheckmarkCircle02Icon} />,
+      })
       router.push('/tasks')
       router.refresh()
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

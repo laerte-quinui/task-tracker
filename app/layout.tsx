@@ -3,6 +3,7 @@ import '@radix-ui/themes/styles.css'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { Toaster } from 'sonner'
 import AuthProvider from './auth/Provider'
 import './globals.css'
 import NavBar from './NavBar'
@@ -40,6 +41,7 @@ export default function RootLayout({
             <main className="px-4 md:px-8 lg:px-14">
               <Container>{children}</Container>
             </main>
+            <Toaster />
           </Theme>
         </AuthProvider>
       </body>

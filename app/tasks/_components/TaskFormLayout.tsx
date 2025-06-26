@@ -4,6 +4,8 @@ import ErrorMessage from '@/app/components/ErrorMessage'
 import { Task } from '@/app/generated/prisma'
 import { patchTaskSchema } from '@/app/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { CheckmarkCircle02Icon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { Button, Flex, Grid, Heading, Text, TextField } from '@radix-ui/themes'
 import axios from 'axios'
 import 'easymde/dist/easymde.min.css'
@@ -11,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import SimpleMDE from 'react-simplemde-editor'
+import { toast } from 'sonner'
 import { z } from 'zod'
 import SelectStatus from './SelectStatus'
 
@@ -33,8 +36,19 @@ const TaskFormLayout = ({ task }: { task?: Task }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true)
-      if (task) await axios.patch(`/api/tasks/${task.id}`, data)
-      else await axios.post('/api/tasks', data)
+      if (task) {
+        await axios.patch(`/api/tasks/${task.id}`, data)
+        toast.success('Task updated successfully!', {
+          position: 'top-right',
+          icon: <HugeiconsIcon size="16px" icon={CheckmarkCircle02Icon} />,
+        })
+      } else {
+        await axios.post('/api/tasks', data)
+        toast.success('Task created successfully!', {
+          position: 'top-right',
+          icon: <HugeiconsIcon size="16px" icon={CheckmarkCircle02Icon} />,
+        })
+      }
 
       router.push('/tasks')
       router.refresh()
