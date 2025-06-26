@@ -45,8 +45,12 @@ const TasksPage = async ({ searchParams }: Props) => {
     ? { [orderBy!]: 'asc' }
     : undefined
 
+  const user = await prisma.user.findUnique({
+    where: { email: session!.user!.email! },
+  })
+
   const tasks = await prisma.task.findMany({
-    where: { status },
+    where: { status, userId: user?.id },
     orderBy: isTable ? validOrder : undefined,
     skip: isTable ? (currentPage - 1) * pageSize : undefined,
     take: isTable ? pageSize : undefined,

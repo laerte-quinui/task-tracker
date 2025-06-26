@@ -11,6 +11,11 @@ export async function PATCH(
   const session = await auth()
   if (!session) return NextResponse.json({}, { status: 401 })
 
+  const user = await prisma.user.findUnique({
+    where: { email: session!.user!.email! },
+  })
+  if (!user) return NextResponse.json({}, { status: 404 })
+
   const body = await request.json()
   const deadline = body.deadline ? new Date(body.deadline) : undefined
 
@@ -31,6 +36,7 @@ export async function PATCH(
       description: body.description,
       status: body.status,
       deadline,
+      userId: user.id,
     },
   })
 

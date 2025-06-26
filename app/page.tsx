@@ -9,10 +9,10 @@ import { countTasks } from './utils/tasks/countTasks'
 
 export default async function Home() {
   const session = await auth()
+  if (!session) return <LoggedoutMessage />
+
   const { toDo, doing, done } = await countTasks()
   const statusQtd = { toDo, doing, done }
-
-  if (!session) return <LoggedoutMessage />
 
   return (
     <Grid

@@ -7,6 +7,11 @@ export async function POST(request: NextRequest) {
   const session = await auth()
   if (!session) return NextResponse.json({}, { status: 401 })
 
+  const user = await prisma.user.findUnique({
+    where: { email: session!.user!.email! },
+  })
+  if (!user) return NextResponse.json({}, { status: 404 })
+
   const body = await request.json()
   const deadline = new Date(body.deadline)
 
@@ -20,6 +25,7 @@ export async function POST(request: NextRequest) {
       description: body.description,
       status: body.status,
       deadline,
+      userId: user.id,
     },
   })
   return NextResponse.json(newTask, { status: 201 })
