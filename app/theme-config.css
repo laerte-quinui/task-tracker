@@ -1,5 +1,10 @@
 .radix-themes {
-	--default-font-family: var(--font-geist-sans), var(--font-geist-mono);
-	--cursor-button: pointer;
-	--cursor-menu-item: pointer;
+  --default-font-family: var(--font-geist-sans), var(--font-geist-mono);
+  --cursor-button: pointer;
+  --cursor-menu-item: pointer;
+  --skeleton-radius-override: var(--radius-3);
+
+  .rt-Skeleton {
+    border-radius: var(--skeleton-radius-override);
+  }
 }
