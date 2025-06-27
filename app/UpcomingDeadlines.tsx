@@ -1,3 +1,4 @@
+import { auth } from '@/auth'
 import { prisma } from '@/prisma/client'
 import { Card, Flex, Heading, Table } from '@radix-ui/themes'
 import Link from 'next/link'
@@ -6,8 +7,13 @@ import EmptyStateMessage from './components/EmptyStateMessage'
 import TaskStatusBadge from './components/TaskStatusBadge'
 
 const UpcomingDeadlines = async () => {
+  const session = await auth()
   const today = new Date()
   today.setHours(0, 0, 0, 0)
+
+  const user = await prisma.user.findUnique({
+    where: { email: session?.user?.email! },
+  })
 
   const tasks = await prisma.task.findMany({
     where: {
@@ -17,6 +23,7 @@ const UpcomingDeadlines = async () => {
       status: {
         not: 'DONE',
       },
+      userId: user?.id,
     },
     orderBy: { deadline: 'asc' },
     take: 10,
